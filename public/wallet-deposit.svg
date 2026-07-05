@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <radialGradient id="wd-halo" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#34D399" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#065F46" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wd-piggy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A7F3D0"/>
+      <stop offset="0.5" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="wd-coin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FEF3C7"/>
+      <stop offset="1" stop-color="#A16207"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="40" cy="40" rx="34" ry="26" fill="url(#wd-halo)"/>
+
+  <!-- Coin dropping in (top) -->
+  <g transform="translate(40 18)">
+    <ellipse cx="0" cy="0" rx="5" ry="2" fill="url(#wd-coin)" stroke="#7C2D12" stroke-width="0.5"/>
+    <text y="1" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="3" font-weight="800" fill="#7C2D12">$</text>
+  </g>
+
+  <!-- Arrow ↓ -->
+  <g stroke="#34D399" stroke-width="1.4" stroke-linecap="round" fill="none">
+    <line x1="40" y1="24" x2="40" y2="34"/>
+    <polyline points="37,31 40,34 43,31"/>
+  </g>
+
+  <!-- Piggy body -->
+  <g transform="translate(40 50)">
+    <ellipse cx="0" cy="0" rx="20" ry="14" fill="url(#wd-piggy)" stroke="#065F46" stroke-width="0.9"/>
+    <!-- ear -->
+    <path d="M-10 -12 L-13 -16 L-6 -13 Z" fill="url(#wd-piggy)" stroke="#065F46" stroke-width="0.6"/>
+    <!-- snout -->
+    <ellipse cx="-18" cy="2" rx="4" ry="4" fill="#10B981" stroke="#065F46" stroke-width="0.5"/>
+    <circle cx="-19" cy="1" r="0.6" fill="#065F46"/>
+    <circle cx="-17" cy="1" r="0.6" fill="#065F46"/>
+    <!-- eye -->
+    <circle cx="-6" cy="-3" r="1.4" fill="#fff"/>
+    <circle cx="-6" cy="-3" r="0.7" fill="#065F46"/>
+    <!-- coin slot -->
+    <rect x="-3" y="-13" width="6" height="1.6" rx="0.6" fill="#065F46"/>
+    <!-- legs -->
+    <rect x="-12" y="11" width="3" height="4" rx="0.6" fill="#047857"/>
+    <rect x="9" y="11" width="3" height="4" rx="0.6" fill="#047857"/>
+    <!-- highlight -->
+    <ellipse cx="4" cy="-7" rx="6" ry="2" fill="#fff" opacity="0.35"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#A7F3D0" opacity="0.85">
+    <path d="M 12 22 L 13 20 L 14 22 L 13 24 Z"/>
+    <circle cx="66" cy="60" r="0.9"/>
+    <path d="M 64 22 L 65 20 L 66 22 L 65 24 Z"/>
+  </g>
+</svg>

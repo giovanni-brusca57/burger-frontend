@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none">
+  <defs>
+    <radialGradient id="sw-halo" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.28"/>
+      <stop offset="0.7" stop-color="#22D3EE" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sw-bun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD08A"/>
+      <stop offset="0.55" stop-color="#F97316"/>
+      <stop offset="1" stop-color="#C2410C"/>
+    </linearGradient>
+    <linearGradient id="sw-bun2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FDBA74"/>
+      <stop offset="1" stop-color="#9A3412"/>
+    </linearGradient>
+    <linearGradient id="sw-patty" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0891B2"/>
+      <stop offset="0.5" stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- halo -->
+  <ellipse cx="80" cy="60" rx="66" ry="48" fill="url(#sw-halo)"/>
+
+  <!-- corner ticks -->
+  <path d="M10 18v-8h8M150 18v-8h-8M10 102v8h8M150 102v8h-8" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- orbit arc -->
+  <path d="M26 82a58 40 0 0 1 20-52" stroke="#22D3EE" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/>
+  <circle cx="46" cy="30" r="2.2" fill="#67E8F9"/>
+  <circle cx="130" cy="88" r="1.8" fill="#67E8F9" opacity="0.7"/>
+
+  <!-- ground glow -->
+  <ellipse cx="80" cy="94" rx="40" ry="4" fill="#22D3EE" opacity="0.18"/>
+
+  <!-- top bun -->
+  <path d="M46 52c0-16 15-25 34-25s34 9 34 25c0 2.2-1.8 4-4 4H50c-2.2 0-4-1.8-4-4Z" fill="url(#sw-bun)"/>
+  <path d="M46 52c0-16 15-25 34-25s34 9 34 25" stroke="#FFE0B0" stroke-opacity="0.55" stroke-width="1.4"/>
+  <!-- sesame -->
+  <ellipse cx="66" cy="38" rx="3" ry="1.9" fill="#FFEAC8" transform="rotate(-18 66 38)"/>
+  <ellipse cx="82" cy="33.5" rx="3" ry="1.9" fill="#FFEAC8" transform="rotate(10 82 33.5)"/>
+  <ellipse cx="97" cy="39" rx="3" ry="1.9" fill="#FFEAC8" transform="rotate(22 97 39)"/>
+
+  <!-- glowing data patty (the sandwiched tx) -->
+  <rect x="38" y="57.5" width="84" height="13" rx="6.5" fill="#22D3EE" opacity="0.22"/>
+  <rect x="42" y="59.5" width="76" height="9" rx="4.5" fill="url(#sw-patty)"/>
+  <rect x="50" y="62.6" width="60" height="2.8" rx="1.4" fill="#E0FCFF" opacity="0.85"/>
+  <!-- flow chevrons in / out -->
+  <path d="M24 64h9m0 0-3.5-3.5M33 64l-3.5 3.5" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M127 64h9m0 0-3.5-3.5M136 64l-3.5 3.5" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- lettuce wave -->
+  <path d="M48 72c4 3.5 8 3.5 12 0s8-3.5 12 0 8 3.5 12 0 8-3.5 12 0 8 3.5 12 0" stroke="#34D399" stroke-width="2.6" stroke-linecap="round"/>
+
+  <!-- bottom bun -->
+  <path d="M48 78h64c2.2 0 4 1.8 4 4v2c0 5.5-4.5 8-10 8H54c-5.5 0-10-2.5-10-8v-2c0-2.2 1.8-4 4-4Z" fill="url(#sw-bun2)"/>
+  <path d="M44 84h72" stroke="#7C2D12" stroke-opacity="0.5" stroke-width="1"/>
+</svg>

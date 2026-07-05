@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="none">
+  <defs>
+    <radialGradient id="dl-glow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#67E8F9" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0E7490" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dl-top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#ECFEFF"/>
+      <stop offset="0.5" stop-color="#67E8F9"/>
+      <stop offset="1"   stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="dl-bot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#164E63"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="100" cy="80" rx="92" ry="60" fill="url(#dl-glow)"/>
+
+  <!-- diamond -->
+  <g transform="translate(100 80)">
+    <!-- top facet pavilion -->
+    <path d="M -34 -10 L -22 -32 L 22 -32 L 34 -10 L 0 -10 Z"
+          fill="url(#dl-top)" stroke="#ECFEFF" stroke-width="1.4" stroke-linejoin="round"/>
+    <!-- bottom pavilion (large triangle) -->
+    <path d="M -34 -10 L 0 38 L 34 -10 Z"
+          fill="url(#dl-bot)" stroke="#ECFEFF" stroke-width="1.4" stroke-linejoin="round"/>
+    <!-- inner facet lines -->
+    <g stroke="#fff" stroke-opacity="0.55" stroke-width="0.7" fill="none">
+      <path d="M -22 -32 L -12 -10 L 0 38"/>
+      <path d="M  22 -32 L  12 -10 L 0 38"/>
+      <path d="M -34 -10 L -12 -10"/>
+      <path d="M  34 -10 L  12 -10"/>
+      <path d="M -12 -10 L  12 -10"/>
+    </g>
+    <!-- top reflection highlight -->
+    <path d="M -16 -28 L -10 -28" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M -16 -25 L -8 -25" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+    <!-- sparkle inside -->
+    <path d="M -4 -2 L 0 -6 L 4 -2 L 0 2 Z" fill="#fff" opacity="0.8"/>
+  </g>
+
+  <!-- 4 sparkle stars around -->
+  <g fill="#ECFEFF" opacity="0.85">
+    <path d="M 32 38 L 35 32 L 38 38 L 35 44 Z"/>
+    <path d="M 162 30 L 165 24 L 168 30 L 165 36 Z"/>
+    <path d="M 170 122 L 173 116 L 176 122 L 173 128 Z"/>
+    <path d="M 26 120 L 29 114 L 32 120 L 29 126 Z"/>
+  </g>
+</svg>

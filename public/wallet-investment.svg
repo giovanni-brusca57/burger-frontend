@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <radialGradient id="wi-halo" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0E7490" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wi-area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#67E8F9" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="40" cy="40" rx="34" ry="26" fill="url(#wi-halo)"/>
+
+  <!-- baseline grid -->
+  <g stroke="#22D3EE" stroke-width="0.35" stroke-opacity="0.22" stroke-dasharray="1.5 1.5">
+    <line x1="10" y1="56" x2="70" y2="56"/>
+    <line x1="10" y1="46" x2="70" y2="46"/>
+    <line x1="10" y1="36" x2="70" y2="36"/>
+    <line x1="10" y1="26" x2="70" y2="26"/>
+  </g>
+
+  <!-- area fill under line -->
+  <path d="M 12 54 Q 22 50 30 44 T 48 32 T 70 18 L 70 60 L 12 60 Z" fill="url(#wi-area)"/>
+
+  <!-- chart line -->
+  <path d="M 12 54 Q 22 50 30 44 T 48 32 T 70 18"
+        stroke="#67E8F9" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- chart point markers -->
+  <g fill="#ECFEFF" stroke="#22D3EE" stroke-width="1">
+    <circle cx="12" cy="54" r="1.4"/>
+    <circle cx="30" cy="44" r="1.4"/>
+    <circle cx="48" cy="32" r="1.4"/>
+    <circle cx="70" cy="18" r="1.8"/>
+  </g>
+
+  <!-- + percent chip -->
+  <g transform="translate(20 16)">
+    <rect x="-10" y="-4" width="20" height="9" rx="4.5"
+          fill="rgba(34,197,94,0.18)" stroke="#22C55E" stroke-width="0.7"/>
+    <text x="0" y="2.2" text-anchor="middle"
+          font-family="'JetBrains Mono', monospace"
+          font-size="5" font-weight="800" fill="#22C55E">+24%</text>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#ECFEFF" opacity="0.85">
+    <path d="M 60 60 L 61 58 L 62 60 L 61 62 Z"/>
+    <circle cx="14" cy="22" r="0.8"/>
+  </g>
+</svg>

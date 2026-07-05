@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none">
+  <defs>
+    <radialGradient id="al-halo" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#A35BFF" stop-opacity="0.26"/>
+      <stop offset="0.7" stop-color="#A35BFF" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#A35BFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="al-crown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F3E8FF"/>
+      <stop offset="1" stop-color="#C084FC"/>
+    </linearGradient>
+    <linearGradient id="al-pav" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#6D28D9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- halo -->
+  <ellipse cx="80" cy="60" rx="66" ry="48" fill="url(#al-halo)"/>
+
+  <!-- corner ticks -->
+  <path d="M10 18v-8h8M150 18v-8h-8M10 102v8h8M150 102v8h-8" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- orbit ring (behind diamond, tilted) -->
+  <ellipse cx="80" cy="62" rx="52" ry="16" stroke="#C084FC" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="3 6" transform="rotate(-12 80 62)"/>
+
+  <!-- diamond -->
+  <g>
+    <!-- crown -->
+    <path d="M56 48l10-14h28l10 14H56Z" fill="url(#al-crown)"/>
+    <!-- pavilion -->
+    <path d="M56 48h48L80 82 56 48Z" fill="url(#al-pav)"/>
+    <!-- facet lines -->
+    <path d="M56 48h48M66 34l6 14 8-14 8 14 6-14M72 48l8 34 8-34" stroke="#F5F3FF" stroke-opacity="0.65" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+    <!-- outline -->
+    <path d="M66 34h28l10 14-24 34-24-34 10-14Z" stroke="#E9D5FF" stroke-opacity="0.8" stroke-width="1.6" stroke-linejoin="round"/>
+  </g>
+
+  <!-- orbit ring (front half over diamond) -->
+  <path d="M29 73c8 8 29 12 51 9" stroke="#C084FC" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 6" stroke-linecap="round" transform="rotate(-12 80 62)"/>
+  <!-- moon on ring -->
+  <circle cx="126" cy="49" r="3.4" fill="#C084FC"/>
+  <circle cx="126" cy="49" r="5.6" stroke="#C084FC" stroke-opacity="0.35" stroke-width="1.2"/>
+
+  <!-- sparkle -->
+  <path d="M60 24l1.8 4.3 4.3 1.8-4.3 1.8-1.8 4.3-1.8-4.3-4.3-1.8 4.3-1.8 1.8-4.3Z" fill="#E9D5FF"/>
+  <circle cx="104" cy="20" r="1.8" fill="#C084FC" opacity="0.7"/>
+  <circle cx="38" cy="92" r="1.8" fill="#C084FC" opacity="0.6"/>
+
+  <!-- ground glow -->
+  <ellipse cx="80" cy="96" rx="40" ry="4.5" fill="#A35BFF" opacity="0.16"/>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="20" viewBox="0 0 240 20" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="lettuceGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#86EFAC"/>
+      <stop offset="0.5" stop-color="#22C55E"/>
+      <stop offset="1"   stop-color="#15803D"/>
+    </linearGradient>
+  </defs>
+  <!-- ruffled bottom edge — wavy lettuce frill -->
+  <path d="M0 0 H240 V12 Q230 20 220 12 Q210 4 200 12 Q190 20 180 12 Q170 4 160 12 Q150 20 140 12 Q130 4 120 12 Q110 20 100 12 Q90 4 80 12 Q70 20 60 12 Q50 4 40 12 Q30 20 20 12 Q10 4 0 12 Z"
+        fill="url(#lettuceGrad)"/>
+  <!-- vein highlights -->
+  <g stroke="#86EFAC" stroke-width="0.6" stroke-opacity="0.5" fill="none">
+    <path d="M20 0 V10"/>
+    <path d="M60 0 V10"/>
+    <path d="M100 0 V10"/>
+    <path d="M140 0 V10"/>
+    <path d="M180 0 V10"/>
+    <path d="M220 0 V10"/>
+  </g>
+</svg>

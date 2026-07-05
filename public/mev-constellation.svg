@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" fill="none" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- gradients -->
+    <linearGradient id="bun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB272"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#00E5FF" stop-opacity="0.35"/>
+      <stop offset="0.6" stop-color="#00E5FF" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#00E5FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="haloCyan"    cx="0.5" cy="0.5"><stop offset="0" stop-color="#00E5FF" stop-opacity="0.45"/><stop offset="1" stop-color="#00E5FF" stop-opacity="0"/></radialGradient>
+    <radialGradient id="haloEmerald" cx="0.5" cy="0.5"><stop offset="0" stop-color="#22C55E" stop-opacity="0.45"/><stop offset="1" stop-color="#22C55E" stop-opacity="0"/></radialGradient>
+    <radialGradient id="haloMagenta" cx="0.5" cy="0.5"><stop offset="0" stop-color="#FF2BD6" stop-opacity="0.45"/><stop offset="1" stop-color="#FF2BD6" stop-opacity="0"/></radialGradient>
+    <radialGradient id="haloGold"    cx="0.5" cy="0.5"><stop offset="0" stop-color="#FACC15" stop-opacity="0.45"/><stop offset="1" stop-color="#FACC15" stop-opacity="0"/></radialGradient>
+    <radialGradient id="haloViolet"  cx="0.5" cy="0.5"><stop offset="0" stop-color="#A35BFF" stop-opacity="0.45"/><stop offset="1" stop-color="#A35BFF" stop-opacity="0"/></radialGradient>
+    <pattern id="hexgrid" x="0" y="0" width="40" height="34.64" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 40 11.55 L 40 23.09 L 20 34.64 L 0 23.09 L 0 11.55 Z" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+    </pattern>
+    <linearGradient id="rocket-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF7AC6"/>
+      <stop offset="1" stop-color="#FF2BD6"/>
+    </linearGradient>
+    <linearGradient id="diamond-shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E0AAFF"/>
+      <stop offset="0.5" stop-color="#A35BFF"/>
+      <stop offset="1" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="connArc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00E5FF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#00E5FF" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#00E5FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- hex grid backdrop -->
+  <rect x="0" y="0" width="960" height="300" fill="url(#hexgrid)"/>
+
+  <!-- center halo -->
+  <circle cx="480" cy="150" r="170" fill="url(#centerGlow)"/>
+  <!-- orbital rings -->
+  <ellipse cx="480" cy="150" rx="320" ry="100" fill="none" stroke="rgba(0,229,255,0.18)" stroke-width="1" stroke-dasharray="2 5"/>
+  <ellipse cx="480" cy="150" rx="200" ry="62"  fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <!-- connecting arcs from center to each satellite -->
+  <g stroke="url(#connArc)" stroke-width="1" fill="none">
+    <path d="M 480 150 Q 320 100 160 90"/>
+    <path d="M 480 150 Q 640 100 820 90"/>
+    <path d="M 480 150 Q 320 200 160 220"/>
+    <path d="M 480 150 Q 640 210 800 230"/>
+  </g>
+
+  <!-- ──────────────────────── CENTER · SANDWICH ──────────────────────── -->
+  <g transform="translate(480 150)">
+    <!-- bot-tx arrow in (cyan) -->
+    <g stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" opacity="0.9">
+      <line x1="-92" y1="0" x2="-58" y2="0"/>
+      <polyline points="-66,-5 -58,0 -66,5" fill="none"/>
+    </g>
+    <!-- bot-tx arrow out (magenta) -->
+    <g stroke="#FF2BD6" stroke-width="2.5" stroke-linecap="round" opacity="0.9">
+      <line x1="58" y1="0" x2="92" y2="0"/>
+      <polyline points="84,-5 92,0 84,5" fill="none"/>
+    </g>
+    <!-- burger stack (hero) -->
+    <g transform="translate(-50 -30)">
+      <path d="M2 28c0-12 18-22 48-22s48 10 48 22H2z" fill="url(#bun)"/>
+      <circle cx="22" cy="14" r="2" fill="#FFEBC8"/>
+      <circle cx="38" cy="10" r="2" fill="#FFEBC8"/>
+      <circle cx="54" cy="14" r="2" fill="#FFEBC8"/>
+      <circle cx="72" cy="11" r="2" fill="#FFEBC8"/>
+      <rect x="-2" y="30" width="104" height="8"  rx="3" fill="#22C55E"/>
+      <rect x="-2" y="39" width="104" height="11" rx="2" fill="#7C2D12"/>
+      <rect x="-2" y="51" width="104" height="6"  rx="2.5" fill="#FACC15"/>
+      <path d="M-2 58h104c0 12-18 22-50 22s-54-10-54-22z" fill="url(#bun)"/>
+    </g>
+    <!-- center label -->
+    <text x="0" y="78" text-anchor="middle" font-family="'Orbitron', monospace" font-size="13" font-weight="800" fill="#fff" letter-spacing="3">SANDWICH</text>
+    <text x="0" y="94" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#9CA3AF" letter-spacing="2">BOT-FLANKED TX</text>
+  </g>
+
+  <!-- ──────────────────────── TOP-LEFT · ADD LP ──────────────────────── -->
+  <g transform="translate(160 90)">
+    <circle cx="0" cy="0" r="48" fill="url(#haloEmerald)"/>
+    <circle cx="-10" cy="0" r="18" fill="rgba(0,229,255,0.12)" stroke="#00E5FF" stroke-width="1.5"/>
+    <circle cx="10"  cy="0" r="18" fill="rgba(34,197,94,0.12)" stroke="#22C55E" stroke-width="1.5"/>
+    <ellipse cx="0" cy="0" rx="8" ry="16" fill="#FACC15" fill-opacity="0.4"/>
+    <g stroke="#FACC15" stroke-width="2" stroke-linecap="round">
+      <line x1="0" y1="-6" x2="0" y2="6"/>
+      <line x1="-6" y1="0" x2="6" y2="0"/>
+    </g>
+    <text x="0" y="42" text-anchor="middle" font-family="'Orbitron', monospace" font-size="11" font-weight="800" fill="#22C55E" letter-spacing="2">ADD LP</text>
+    <text x="0" y="56" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#9CA3AF" letter-spacing="1.5">LIQUIDITY · A+B</text>
+  </g>
+
+  <!-- ──────────────────────── TOP-RIGHT · STAKING ──────────────────────── -->
+  <g transform="translate(820 90)">
+    <circle cx="0" cy="0" r="48" fill="url(#haloGold)"/>
+    <!-- compound up trail -->
+    <g fill="#22C55E">
+      <circle cx="22" cy="14" r="1.4" opacity="0.5"/>
+      <circle cx="26" cy="4" r="1.7" opacity="0.7"/>
+      <circle cx="29" cy="-6" r="2" opacity="0.9"/>
+    </g>
+    <g stroke="#22C55E" stroke-width="2" stroke-linecap="round" fill="none">
+      <line x1="29" y1="-8" x2="29" y2="-22"/>
+      <polyline points="25,-18 29,-22 33,-18"/>
+    </g>
+    <!-- coin stack -->
+    <g stroke="#7C2D12" stroke-width="1">
+      <ellipse cx="-10" cy="14" rx="20" ry="5.5" fill="#B45309"/>
+      <ellipse cx="-10" cy="6"  rx="20" ry="5.5" fill="#FACC15"/>
+      <ellipse cx="-10" cy="-2" rx="20" ry="5.5" fill="#F97316"/>
+    </g>
+    <!-- lock on top -->
+    <g stroke="#FACC15" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M-15 -8 v-6 a5 5 0 0 1 10 0 v6"/>
+    </g>
+    <rect x="-16" y="-9" width="12" height="9" rx="2" fill="#FACC15" stroke="#7C2D12" stroke-width="0.8"/>
+    <text x="0" y="42" text-anchor="middle" font-family="'Orbitron', monospace" font-size="11" font-weight="800" fill="#FACC15" letter-spacing="2">STAKING</text>
+    <text x="0" y="56" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#9CA3AF" letter-spacing="1.5">COMPOUNDING APR</text>
+  </g>
+
+  <!-- ──────────────────────── BOTTOM-LEFT · MEME TRADING ──────────────────────── -->
+  <g transform="translate(160 220)">
+    <circle cx="0" cy="0" r="48" fill="url(#haloMagenta)"/>
+    <!-- trail dots -->
+    <g fill="#FF2BD6">
+      <circle cx="-20" cy="20" r="1.8" opacity="0.4"/>
+      <circle cx="-12" cy="12" r="1.5" opacity="0.6"/>
+      <circle cx="-6" cy="4" r="1.2" opacity="0.8"/>
+    </g>
+    <line x1="-18" y1="18" x2="0" y2="0" stroke="#FF2BD6" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <!-- rocket -->
+    <g transform="rotate(45)">
+      <path d="M0 -16 L5 -7 L-5 -7 Z" fill="#fff"/>
+      <rect x="-5" y="-7" width="10" height="14" rx="2" fill="url(#rocket-body)"/>
+      <circle cx="0" cy="-1" r="2" fill="#00E5FF"/>
+      <path d="M-5 4 L-10 10 L-5 9 Z" fill="#FF2BD6"/>
+      <path d="M5 4 L10 10 L5 9 Z" fill="#FF2BD6"/>
+      <path d="M-3 7 L0 16 L3 7 Z" fill="#FACC15"/>
+    </g>
+    <!-- mini pump candle -->
+    <g transform="translate(22 -16)">
+      <rect x="-1.5" y="-4" width="3" height="10" fill="#22C55E" rx="0.4"/>
+      <line x1="0" y1="-7" x2="0" y2="-4" stroke="#22C55E" stroke-width="1"/>
+      <line x1="0" y1="6" x2="0" y2="9" stroke="#22C55E" stroke-width="1"/>
+    </g>
+    <text x="0" y="42" text-anchor="middle" font-family="'Orbitron', monospace" font-size="11" font-weight="800" fill="#FF2BD6" letter-spacing="2">MEME TRADING</text>
+    <text x="0" y="56" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#9CA3AF" letter-spacing="1.5">VOLATILITY HUNT</text>
+  </g>
+
+  <!-- ──────────────────────── BOTTOM-RIGHT · ALTCOIN HOLD ──────────────────────── -->
+  <g transform="translate(800 230)">
+    <circle cx="0" cy="0" r="48" fill="url(#haloViolet)"/>
+    <!-- diamond -->
+    <g>
+      <path d="M0 -22 L18 -4 L0 22 L-18 -4 Z" fill="url(#diamond-shine)" stroke="#E0AAFF" stroke-width="1"/>
+      <path d="M-18 -4 L18 -4" stroke="#fff" stroke-opacity="0.5" stroke-width="0.7"/>
+      <path d="M0 -22 L-6 -4 L0 22" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="0.5"/>
+      <path d="M0 -22 L6 -4 L0 22"  fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="0.5"/>
+    </g>
+    <!-- 4 mini coins orbiting -->
+    <g>
+      <circle cx="-28" cy="-18" r="5" fill="#00E5FF" stroke="#0A0D12" stroke-width="0.8"/>
+      <text x="-28" y="-15" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="800" fill="#0A0D12">Ξ</text>
+      <circle cx="28" cy="-18" r="5" fill="#FACC15" stroke="#0A0D12" stroke-width="0.8"/>
+      <text x="28" y="-15" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="800" fill="#0A0D12">₿</text>
+      <circle cx="-28" cy="18" r="5" fill="#22C55E" stroke="#0A0D12" stroke-width="0.8"/>
+      <text x="-28" y="21" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="800" fill="#0A0D12">◎</text>
+      <circle cx="28" cy="18" r="5" fill="#FF2BD6" stroke="#0A0D12" stroke-width="0.8"/>
+      <text x="28" y="21" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="800" fill="#0A0D12">◇</text>
+    </g>
+    <text x="0" y="50" text-anchor="middle" font-family="'Orbitron', monospace" font-size="11" font-weight="800" fill="#A35BFF" letter-spacing="2">ALTCOIN HOLD</text>
+    <text x="0" y="64" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#9CA3AF" letter-spacing="1.5">DIAMOND HANDS</text>
+  </g>
+
+  <!-- corner ops tags -->
+  <text x="20" y="22" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#00E5FF" letter-spacing="2">// BURGER · MAINNET</text>
+  <text x="940" y="22" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#22C55E" letter-spacing="2">● LIVE</text>
+  <text x="940" y="285" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#6B7280" letter-spacing="2">v2.4.1 · 24/7 OPS</text>
+</svg>

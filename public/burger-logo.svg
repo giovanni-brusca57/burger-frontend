@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB272"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <linearGradient id="bottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F97316"/>
+      <stop offset="1" stop-color="#C2410C"/>
+    </linearGradient>
+  </defs>
+  <path d="M8 22c0-9 10.7-14 24-14s24 5 24 14H8z" fill="url(#bun)"/>
+  <circle cx="22" cy="15" r="1.6" fill="#FFEBC8"/>
+  <circle cx="32" cy="12" r="1.6" fill="#FFEBC8"/>
+  <circle cx="42" cy="15" r="1.6" fill="#FFEBC8"/>
+  <circle cx="16" cy="18" r="1.4" fill="#FFEBC8"/>
+  <circle cx="48" cy="18" r="1.4" fill="#FFEBC8"/>
+  <rect x="6" y="26" width="52" height="5" rx="2.5" fill="#22C55E"/>
+  <rect x="6" y="32" width="52" height="6" rx="2" fill="#7C2D12"/>
+  <rect x="6" y="39" width="52" height="4" rx="2" fill="#FACC15"/>
+  <path d="M6 44h52c0 7-10.7 12-26 12S6 51 6 44z" fill="url(#bottom)"/>
+</svg>

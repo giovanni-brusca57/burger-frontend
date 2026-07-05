@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="none">
+  <defs>
+    <radialGradient id="gl-glow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#FCD34D" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#B45309" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gl-crown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#FEF3C7"/>
+      <stop offset="0.4" stop-color="#FACC15"/>
+      <stop offset="1"   stop-color="#A16207"/>
+    </linearGradient>
+    <linearGradient id="gl-band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#7C2D12"/>
+    </linearGradient>
+    <radialGradient id="gl-ruby">
+      <stop offset="0" stop-color="#FCA5A5"/>
+      <stop offset="0.6" stop-color="#DC2626"/>
+      <stop offset="1" stop-color="#450A0A"/>
+    </radialGradient>
+    <radialGradient id="gl-sap">
+      <stop offset="0" stop-color="#86EFAC"/>
+      <stop offset="0.6" stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#14532D"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="100" cy="80" rx="92" ry="60" fill="url(#gl-glow)"/>
+
+  <!-- crown body -->
+  <g transform="translate(100 80)">
+    <!-- 5-point crown silhouette (3 peaks + 2 valleys) -->
+    <path
+      d="M -42 16
+         L -42 -8
+         L -32 4
+         L -22 -22
+         L -12 4
+         L 0 -28
+         L 12 4
+         L 22 -22
+         L 32 4
+         L 42 -8
+         L 42 16 Z"
+      fill="url(#gl-crown)"
+      stroke="#FEF3C7"
+      stroke-width="1.5"
+      stroke-linejoin="round"
+    />
+    <!-- crown band -->
+    <rect x="-42" y="16" width="84" height="14" rx="2" fill="url(#gl-band)" stroke="#FEF3C7" stroke-width="1.2"/>
+    <!-- band pattern -->
+    <g stroke="#FEF3C7" stroke-opacity="0.55" stroke-width="0.8">
+      <line x1="-30" y1="16" x2="-30" y2="30"/>
+      <line x1="-15" y1="16" x2="-15" y2="30"/>
+      <line x1="0"   y1="16" x2="0"   y2="30"/>
+      <line x1="15"  y1="16" x2="15"  y2="30"/>
+      <line x1="30"  y1="16" x2="30"  y2="30"/>
+    </g>
+    <!-- 3 peak jewels -->
+    <circle cx="-22" cy="-12" r="4" fill="url(#gl-sap)" stroke="#FEF3C7" stroke-width="0.8"/>
+    <circle cx="0"   cy="-18" r="5" fill="url(#gl-ruby)" stroke="#FEF3C7" stroke-width="0.8"/>
+    <circle cx="22"  cy="-12" r="4" fill="url(#gl-sap)" stroke="#FEF3C7" stroke-width="0.8"/>
+    <!-- band center jewel -->
+    <rect x="-3" y="19" width="6" height="8" rx="1" fill="url(#gl-ruby)" stroke="#FEF3C7" stroke-width="0.6"/>
+    <!-- highlight glints -->
+    <path d="M -36 -4 L -34 -4" stroke="#fff" stroke-width="1.2" opacity="0.7"/>
+    <path d="M -5 -22 L 0 -28 L 5 -22" stroke="#fff" stroke-opacity="0.45" stroke-width="0.6" fill="none"/>
+  </g>
+
+  <!-- gold sparkles -->
+  <g fill="#FEF3C7" opacity="0.85">
+    <path d="M 30 36 L 32 33 L 34 36 L 32 39 Z"/>
+    <path d="M 168 36 L 170 33 L 172 36 L 170 39 Z"/>
+    <path d="M 168 118 L 170 115 L 172 118 L 170 121 Z"/>
+    <circle cx="28" cy="118" r="1.6"/>
+  </g>
+</svg>

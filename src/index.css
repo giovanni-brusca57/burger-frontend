@@ -1,0 +1,4758 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =============================================================================
+   Burger Terminal — Operator's Terminal
+   "The private terminal of an operator who reads the FT on weekends"
+   Dark-by-default canonical (`:root`). `.light` opts into the marketing/auth set.
+   ============================================================================= */
+:root {
+  font-family: 'Orbitron', 'Space Grotesk', 'Satoshi', 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --radius: 1.75rem;
+
+  --background: oklch(0.18 0.012 250);          /* warm-ink, not pitch black */
+  --foreground: oklch(0.94 0.008 82);           /* warm bone (paper-on-ink) */
+  --card: oklch(0.22 0.012 250);                /* surface-1 archived row */
+  --card-foreground: oklch(0.94 0.008 82);
+  --popover: oklch(0.22 0.012 250);
+  --popover-foreground: oklch(0.94 0.008 82);
+
+  --primary: oklch(0.85 0.18 200);              /* electric cyan — interaction/CTA/focus ONLY */
+  --primary-foreground: oklch(0.13 0.012 250);
+  --secondary: oklch(0.25 0.014 250);           /* surface-2 live row */
+  --secondary-foreground: oklch(0.94 0.008 82);
+  --muted: oklch(0.22 0.012 250);
+  --muted-foreground: oklch(0.62 0.010 82);
+  --accent: oklch(0.25 0.014 250);
+  --accent-foreground: oklch(0.94 0.008 82);
+
+  --destructive: oklch(0.45 0.18 25);           /* burgundy — adversarial state */
+  --success: oklch(0.55 0.14 155);              /* deep emerald — gain state */
+  --info: oklch(0.85 0.18 200);                 /* cyan alias */
+  --warning: oklch(0.78 0.13 75);               /* antique gold */
+  --danger: oklch(0.45 0.18 25);
+  --gold: oklch(0.78 0.13 75);                  /* reserved for once-per-session pull-quote */
+
+  --surface-soft: oklch(0.20 0.012 250);        /* surface between bg and card */
+  --surface-1: oklch(0.22 0.012 250);           /* archived rows */
+  --surface-2: oklch(0.25 0.014 250);           /* live rows */
+  --border: oklch(0.30 0.008 250);              /* 1px hairline — the only divider */
+  --input: oklch(0.25 0.014 250);
+  --ring: oklch(0.85 0.18 200);
+
+  --chart-1: oklch(0.85 0.18 200);  /* cyan */
+  --chart-2: oklch(0.55 0.14 155);  /* emerald */
+  --chart-3: oklch(0.78 0.13 75);   /* gold */
+  --chart-4: oklch(0.45 0.18 25);   /* burgundy */
+  --chart-5: oklch(0.62 0.010 82);  /* warm muted */
+
+  --sidebar: oklch(0.14 0.012 250);
+  --sidebar-foreground: oklch(0.88 0.008 82);
+  --sidebar-primary: oklch(0.85 0.18 200);
+  --sidebar-primary-foreground: oklch(0.13 0.012 250);
+  --sidebar-accent: oklch(0.20 0.012 250);
+  --sidebar-accent-foreground: oklch(0.94 0.008 82);
+  --sidebar-border: oklch(0.28 0.008 250);
+  --sidebar-ring: oklch(0.85 0.18 200);
+}
+
+/* Mirror :root so `.dark` (theme store toggle) keeps the canonical dark spec. */
+.dark {
+  --background: oklch(0.18 0.012 250);
+  --foreground: oklch(0.94 0.008 82);
+  --card: oklch(0.22 0.012 250);
+  --card-foreground: oklch(0.94 0.008 82);
+  --popover: oklch(0.22 0.012 250);
+  --popover-foreground: oklch(0.94 0.008 82);
+  --primary: oklch(0.85 0.18 200);
+  --primary-foreground: oklch(0.13 0.012 250);
+  --secondary: oklch(0.25 0.014 250);
+  --secondary-foreground: oklch(0.94 0.008 82);
+  --muted: oklch(0.22 0.012 250);
+  --muted-foreground: oklch(0.62 0.010 82);
+  --accent: oklch(0.25 0.014 250);
+  --accent-foreground: oklch(0.94 0.008 82);
+  --destructive: oklch(0.45 0.18 25);
+  --success: oklch(0.55 0.14 155);
+  --info: oklch(0.85 0.18 200);
+  --warning: oklch(0.78 0.13 75);
+  --danger: oklch(0.45 0.18 25);
+  --gold: oklch(0.78 0.13 75);
+  --surface-soft: oklch(0.20 0.012 250);
+  --surface-1: oklch(0.22 0.012 250);
+  --surface-2: oklch(0.25 0.014 250);
+  --border: oklch(0.30 0.008 250);
+  --input: oklch(0.25 0.014 250);
+  --ring: oklch(0.85 0.18 200);
+  --chart-1: oklch(0.85 0.18 200);
+  --chart-2: oklch(0.55 0.14 155);
+  --chart-3: oklch(0.78 0.13 75);
+  --chart-4: oklch(0.45 0.18 25);
+  --chart-5: oklch(0.62 0.010 82);
+  --sidebar: oklch(0.14 0.012 250);
+  --sidebar-foreground: oklch(0.88 0.008 82);
+  --sidebar-primary: oklch(0.85 0.18 200);
+  --sidebar-primary-foreground: oklch(0.13 0.012 250);
+  --sidebar-accent: oklch(0.20 0.012 250);
+  --sidebar-accent-foreground: oklch(0.94 0.008 82);
+  --sidebar-border: oklch(0.28 0.008 250);
+  --sidebar-ring: oklch(0.85 0.18 200);
+}
+
+.light, html.light, [data-theme="light"] {
+  --background: oklch(0.97 0.008 82);
+  --foreground: oklch(0.18 0.012 250);
+  --card: oklch(0.99 0.005 82);
+  --card-foreground: oklch(0.18 0.012 250);
+  --popover: oklch(0.99 0.005 82);
+  --popover-foreground: oklch(0.18 0.012 250);
+  --primary: oklch(0.55 0.18 200);
+  --primary-foreground: oklch(0.97 0.008 82);
+  --secondary: oklch(0.94 0.012 82);
+  --secondary-foreground: oklch(0.18 0.012 250);
+  --muted: oklch(0.94 0.012 82);
+  --muted-foreground: oklch(0.42 0.012 250);
+  --accent: oklch(0.94 0.012 82);
+  --accent-foreground: oklch(0.18 0.012 250);
+  --destructive: oklch(0.45 0.18 25);
+  --success: oklch(0.45 0.14 155);
+  --info: oklch(0.55 0.18 200);
+  --warning: oklch(0.62 0.13 75);
+  --danger: oklch(0.45 0.18 25);
+  --gold: oklch(0.62 0.13 75);
+  --surface-soft: oklch(0.95 0.010 82);
+  --surface-1: oklch(0.97 0.008 82);
+  --surface-2: oklch(0.94 0.012 82);
+  --border: oklch(0.80 0.008 82);
+  --input: oklch(0.92 0.010 82);
+  --ring: oklch(0.55 0.18 200);
+  --chart-1: oklch(0.55 0.18 200);
+  --chart-2: oklch(0.45 0.14 155);
+  --chart-3: oklch(0.62 0.13 75);
+  --chart-4: oklch(0.45 0.18 25);
+  --chart-5: oklch(0.50 0.010 82);
+  --sidebar: oklch(0.14 0.012 250);
+  --sidebar-foreground: oklch(0.88 0.008 82);
+  --sidebar-primary: oklch(0.85 0.18 200);
+  --sidebar-primary-foreground: oklch(0.13 0.012 250);
+  --sidebar-accent: oklch(0.20 0.012 250);
+  --sidebar-accent-foreground: oklch(0.94 0.008 82);
+  --sidebar-border: oklch(0.28 0.008 250);
+  --sidebar-ring: oklch(0.85 0.18 200);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-info: var(--info);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-gold: var(--gold);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* =============================================================================
+   Custom easing tokens — stronger than default. Per Emil Kowalski:
+   built-in CSS curves are too weak; UI animations need punch.
+   ============================================================================= */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);          /* strong ease-out — first-frame impact */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);      /* on-screen movement */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);       /* iOS drawer feel */
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    min-height: 100vh;
+    background-image: none;  /* kill the prior radial-gradient halo */
+  }
+
+  /* Subtle noise was forcing a full-viewport composite on every scroll frame
+     (position:fixed + mix-blend-mode:overlay + SVG turbulence filter).
+     Removed — the 4% effect was barely visible and was the main jank source. */
+
+  button {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+    color: var(--foreground);
+  }
+
+  .font-mono, code, kbd, samp, pre,
+  .tabular-cell, .metric-figure, .num {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* Display headings — match the Burger logo: Orbitron geometric sci-fi.
+     Slight positive letter-spacing keeps it legible at heading sizes.
+     Per design-taste-frontend skill: NO Inter fallback. */
+  h1, h2, h3, .display {
+    font-family: 'Orbitron', 'Space Grotesk', 'Satoshi', 'Geist', system-ui, sans-serif;
+    letter-spacing: 0.01em;
+  }
+  h1 { font-weight: 800; }
+  h2 { font-weight: 700; }
+  h3 { font-weight: 600; }
+}
+
+@layer utilities {
+  /* =========================================================================
+     SCROLL-PAUSE — when <html> has `.is-scrolling` (set by JS scroll listener
+     in main.tsx), pause every continuous animation in the document. This
+     eliminates GPU compositor desync (where animated elements visually
+     detach from their parent card during scroll). Animations resume ~180ms
+     after the last scroll event.
+     ========================================================================= */
+  html.is-scrolling *,
+  html.is-scrolling *::before,
+  html.is-scrolling *::after {
+    animation-play-state: paused !important;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.40 0.008 250) transparent;
+  }
+
+  .bg-grid-soft {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--foreground) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 4%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Brutalist hairline + flat offset shadow */
+  .shadow-press      { box-shadow: 3px 3px 0 0 var(--border); }
+  .shadow-press-cyan { box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--primary) 60%, transparent); }
+
+  .card-operator {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  /* Subtle blueprint grid overlay for hero cards — static, fades out toward
+     the bottom-right so it never fights the content. */
+  .hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 90% at 15% 0%, black, transparent 78%);
+    mask-image: radial-gradient(ellipse 90% 90% at 15% 0%, black, transparent 78%);
+    pointer-events: none;
+  }
+
+  /* Hero headline — white with a warm gold tail, premium fintech feel */
+  .hero-title-gradient {
+    background: linear-gradient(94deg, #ffffff 45%, #FDE68A 78%, #F59E0B 108%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Live telemetry strip — mono stats with LED dots along the hero's bottom */
+  .hero-telemetry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    margin-top: 1.15rem;
+    padding-top: 0.9rem;
+    border-top: 1px dashed color-mix(in oklab, var(--border) 85%, transparent);
+  }
+  .hero-telemetry-item {
+    --ht-c: oklch(0.85 0.16 215);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: oklch(0.62 0.02 250);
+    white-space: nowrap;
+  }
+  .hero-telemetry-item::before {
+    content: '';
+    align-self: center;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ht-c);
+    /* Static glow — never animate shadows (scroll ghosting) */
+    box-shadow: 0 0 8px var(--ht-c);
+    flex-shrink: 0;
+  }
+  .hero-telemetry-value {
+    color: var(--ht-c);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+  .hero-telemetry-item--mint   { --ht-c: oklch(0.82 0.18 150); }
+  .hero-telemetry-item--gold   { --ht-c: oklch(0.82 0.18 65);  }
+  .hero-telemetry-item--cyan   { --ht-c: oklch(0.85 0.16 215); }
+  .hero-telemetry-item--violet { --ht-c: oklch(0.78 0.18 305); }
+
+  /* Tabular metric figure */
+  .tabular-cell, .metric-figure, .num {
+    font-variant-numeric: tabular-nums slashed-zero;
+    font-feature-settings: 'tnum' 1, 'zero' 1;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  /* Operator eyebrow — // NODE.MAINNET.LIVE pattern */
+  .eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted-foreground);
+  }
+
+  /* Cyberpunk display — Orbitron, for brand wordmark + section markers */
+  .font-cyber {
+    font-family: 'Orbitron', 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+  .font-cyber-glow {
+    text-shadow:
+      0 0 8px color-mix(in oklab, var(--primary) 60%, transparent),
+      0 0 18px color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  /* Editorial pull-quote — once per session, Fraunces italic gold.
+     Positive tracking (italic serifs need breathing room across diagonal stems). */
+  .editorial-quote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 1.875rem);
+    line-height: 1.32;
+    letter-spacing: 0.005em;
+    color: var(--gold);
+    max-width: 38ch;
+    text-wrap: balance;
+  }
+
+  /* H1 highlight — marketing/auth H1 only, one gold moment */
+  .h1-highlight {
+    background: color-mix(in oklab, var(--gold) 90%, transparent);
+    color: var(--background);
+    padding: 0 0.3em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Live state — emerald dot pulse. Gentler 1.0→0.55 (vs prior 0.35 flicker)
+     with custom ease-in-out for a true heartbeat breath, not a blink. */
+  .state-live::before {
+    content: '';
+    display: inline-block;
+    width: 0.375rem; height: 0.375rem;
+    border-radius: 9999px;
+    background: var(--success);
+    margin-right: 0.5rem;
+    animation: state-live-pulse 1.8s var(--ease-in-out) infinite;
+  }
+  @keyframes state-live-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.55; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .state-live::before { animation: none; }
+  }
+
+  /* Adversarial state — burgundy left border */
+  .state-adversarial {
+    border-left: 2px solid var(--destructive);
+    padding-left: 0.75rem;
+    color: var(--destructive);
+  }
+
+  /* Hairline dividers + soft surface */
+  .rule-hairline { height: 1px; background: var(--border); }
+  .divider-soft { height: 1px; background: var(--border); }
+  .surface-soft { background: var(--surface-soft); }
+
+  /* Pills (designer-c discipline: hairline border, no fill in default) */
+  .pill-base {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--foreground);
+  }
+  .pill-primary { background: color-mix(in oklab, var(--primary) 12%, transparent); color: var(--primary); border-color: color-mix(in oklab, var(--primary) 40%, var(--border)); }
+  .pill-success { background: color-mix(in oklab, var(--success) 14%, transparent); color: var(--success); border-color: color-mix(in oklab, var(--success) 35%, var(--border)); }
+  .pill-warning { background: color-mix(in oklab, var(--warning) 14%, transparent); color: var(--warning); border-color: color-mix(in oklab, var(--warning) 35%, var(--border)); }
+  .pill-danger  { background: color-mix(in oklab, var(--destructive) 14%, transparent); color: var(--destructive); border-color: color-mix(in oklab, var(--destructive) 35%, var(--border)); }
+  .pill-info    { background: color-mix(in oklab, var(--info) 12%, transparent); color: var(--info); border-color: color-mix(in oklab, var(--info) 35%, var(--border)); }
+  .pill-neutral { background: var(--surface-soft); color: var(--muted-foreground); }
+
+  /* Live-state dot (legacy alias used in existing components) */
+  .pulse-dot {
+    display: inline-block;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 9999px;
+    background: currentColor;
+    animation: state-live-pulse 1.6s ease-in-out infinite;
+  }
+
+  /* Deprecated — kept as no-ops so legacy class refs don't break at runtime. */
+  .glow-primary, .card-elevated, .text-gradient-primary, .hero-card { /* deprecated */ }
+
+  /* =========================================================================
+     Rank tiles — per-tier neon. The ONE place in the app that opts out of the
+     operator's-terminal restraint: each rank gets its own saturated hue + glow
+     halo so the network section reads as a status board, not a table.
+     ========================================================================= */
+  .neon-tile {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--neon) 55%, var(--border));
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--neon) 18%, transparent), transparent 55%),
+      radial-gradient(circle at 0% 100%, color-mix(in oklab, var(--neon) 8%, transparent),  transparent 60%),
+      var(--card);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--neon) 18%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--neon) 18%, transparent),
+      0 0 28px -8px color-mix(in oklab, var(--neon) 55%, transparent);
+  }
+  /* Promote to its own layer so the halo doesn't trigger root-layer repaints on scroll */
+  .neon-tile { will-change: transform; transform: translateZ(0); }
+  /* Transition only on hover — avoids browser interpolating shadow during scroll.
+     Strong custom ease-out for first-frame punch (Emil curve). */
+  @media (hover: hover) {
+    .neon-tile {
+      transition: box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
+    }
+    .neon-tile:hover {
+      transform: translateY(-2px) translateZ(0);
+      box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--neon) 30%, transparent),
+        0 0 0 1px color-mix(in oklab, var(--neon) 35%, transparent),
+        0 0 36px -6px color-mix(in oklab, var(--neon) 70%, transparent);
+    }
+    .neon-tile:active {
+      transform: translateY(0) scale(0.985) translateZ(0);
+      transition-duration: 100ms;
+    }
+  }
+
+  /* Stagger entrance — Emil: simultaneous appearance is jarring, 50ms cascade
+     feels natural. Apply to immediate children via :nth-child auto-delays.
+     opacity-only entrance is cheaper than transform; @starting-style not yet
+     universal, so use an animation that runs once on mount. */
+  .stagger-in > * {
+    opacity: 0;
+    animation: stagger-fade-in 380ms var(--ease-out) forwards;
+  }
+  .stagger-in > *:nth-child(1) { animation-delay:  40ms; }
+  .stagger-in > *:nth-child(2) { animation-delay:  90ms; }
+  .stagger-in > *:nth-child(3) { animation-delay: 140ms; }
+  .stagger-in > *:nth-child(4) { animation-delay: 190ms; }
+  .stagger-in > *:nth-child(5) { animation-delay: 240ms; }
+  .stagger-in > *:nth-child(6) { animation-delay: 290ms; }
+  @keyframes stagger-fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-in > * { opacity: 1; animation: none; }
+  }
+  .neon-tile.is-active {
+    border-color: var(--neon);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--neon) 35%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--neon) 60%, transparent),
+      0 0 40px -4px color-mix(in oklab, var(--neon) 75%, transparent);
+  }
+
+  .neon-icon {
+    position: relative;
+    background: color-mix(in oklab, var(--neon) 18%, transparent);
+    border: 1px solid color-mix(in oklab, var(--neon) 55%, var(--border));
+    color: var(--neon);
+    box-shadow:
+      0 0 12px -2px color-mix(in oklab, var(--neon) 55%, transparent),
+      inset 0 0 10px -2px color-mix(in oklab, var(--neon) 35%, transparent);
+  }
+  /* Orbital pulse ring — cyberpunk HUD feel.
+     Per Emil: high-frequency surfaces shouldn't carry purposeless infinite motion.
+     Ring is hidden by default and only plays on hover/tile-hover. Restores
+     peripheral calm; the halo glow alone carries the cyberpunk weight. */
+  .neon-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    border: 1px solid color-mix(in oklab, var(--neon) 50%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .neon-tile:hover .neon-icon::before,
+    .neon-icon:hover::before {
+      animation: neon-ring 2.4s var(--ease-out) infinite;
+    }
+  }
+  @keyframes neon-ring {
+    0%   { transform: scale(1);   opacity: 0.55; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .neon-icon::before { animation: none; }
+  }
+  .neon-figure {
+    color: var(--neon);
+    text-shadow: 0 0 14px color-mix(in oklab, var(--neon) 45%, transparent);
+  }
+  .neon-percent {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    color: var(--neon);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--neon) 55%, transparent);
+  }
+  .neon-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--neon) 60%, transparent) 50%, transparent);
+  }
+
+  /* =========================================================================
+     GRADIENT CARDS — bold vibrant poster-card aesthetic.
+     Heavy saturated gradient + generous radius + airy padding + white type.
+     Each card differentiates only by gradient hue family.
+     ========================================================================= */
+  .gradient-card {
+    position: relative;
+    border-radius: 1.75rem;
+    padding: 1.75rem;
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 200ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  }
+  /* Faint top-left vignette + subtle scanline noise for depth */
+  .gradient-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(255,255,255,0.22), transparent 55%),
+      repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.018) 3px 4px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Inner crisp neon border highlight ring */
+  .gradient-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18),
+                inset 0 1px 0 rgba(255,255,255,0.28);
+  }
+  .gradient-card > * { position: relative; z-index: 1; }
+
+  /* Per-card hue + neon halo families. Each card gets:
+     · drop-shadow depth (black)
+     · close neon glow (matching gradient hue)
+     · soft far neon glow (deeper hue, larger spread)
+     · inner top highlight */
+  .gc-engine {
+    background: linear-gradient(140deg, #F472B6 0%, #DB2777 40%, #7E22CE 100%);
+    box-shadow:
+      0 22px 50px -20px rgba(0,0,0,0.55),
+      0 0 32px -4px rgba(244, 114, 182, 0.55),
+      0 0 90px -16px rgba(192, 38, 211, 0.45);
+  }
+  @media (hover: hover) {
+    .gc-engine:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 28px 56px -20px rgba(0,0,0,0.6),
+        0 0 42px -4px rgba(244, 114, 182, 0.75),
+        0 0 120px -12px rgba(192, 38, 211, 0.55);
+    }
+  }
+
+  .gc-wallet {
+    background: linear-gradient(140deg, #38BDF8 0%, #0EA5E9 40%, #1E40AF 100%);
+    box-shadow:
+      0 22px 50px -20px rgba(0,0,0,0.55),
+      0 0 32px -4px rgba(56, 189, 248, 0.55),
+      0 0 90px -16px rgba(30, 64, 175, 0.45);
+  }
+  @media (hover: hover) {
+    .gc-wallet:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 28px 56px -20px rgba(0,0,0,0.6),
+        0 0 42px -4px rgba(56, 189, 248, 0.75),
+        0 0 120px -12px rgba(30, 64, 175, 0.55);
+    }
+  }
+
+  .gc-profit {
+    background: linear-gradient(140deg, #4ADE80 0%, #16A34A 40%, #14532D 100%);
+    box-shadow:
+      0 22px 50px -20px rgba(0,0,0,0.55),
+      0 0 32px -4px rgba(74, 222, 128, 0.55),
+      0 0 90px -16px rgba(22, 163, 74, 0.45);
+  }
+  @media (hover: hover) {
+    .gc-profit:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 28px 56px -20px rgba(0,0,0,0.6),
+        0 0 42px -4px rgba(74, 222, 128, 0.75),
+        0 0 120px -12px rgba(22, 163, 74, 0.55);
+    }
+  }
+
+  .gc-pool {
+    background: linear-gradient(140deg, #FCD34D 0%, #F59E0B 40%, #B45309 100%);
+    box-shadow:
+      0 22px 50px -20px rgba(0,0,0,0.55),
+      0 0 32px -4px rgba(252, 211, 77, 0.6),
+      0 0 90px -16px rgba(245, 158, 11, 0.5);
+  }
+  @media (hover: hover) {
+    .gc-pool:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 28px 56px -20px rgba(0,0,0,0.6),
+        0 0 42px -4px rgba(252, 211, 77, 0.8),
+        0 0 120px -12px rgba(245, 158, 11, 0.6);
+    }
+  }
+
+  /* Contrasting CTA — mint/teal pops against any of the above gradients */
+  .gc-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    background: #5EEAD4;
+    color: #134E4A;
+    font-weight: 800;
+    font-family: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    box-shadow:
+      0 8px 22px -8px rgba(94, 234, 212, 0.65),
+      0 0 26px -8px rgba(94, 234, 212, 0.55),
+      inset 0 1px 0 rgba(255,255,255,0.45);
+    transition: transform 160ms var(--ease-out), background 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+  }
+  .gc-cta:active { transform: scale(0.97); }
+  @media (hover: hover) {
+    .gc-cta:hover { background: #2DD4BF; }
+  }
+
+  /* Glass input chip — frosted on the gradient */
+  .gc-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #fff;
+    backdrop-filter: blur(8px);
+  }
+
+  /* Soft floating pill (for ACTIVE badges inside gradient cards) */
+  .gc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+  }
+  .gc-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5EEAD4;
+    box-shadow: 0 0 10px #5EEAD4, 0 0 20px rgba(94, 234, 212, 0.6);
+    animation: state-live-pulse 1.8s var(--ease-in-out) infinite;
+  }
+
+  /* =========================================================================
+     BURGER CARD FRAME — horizontal cross-section of a burger.
+     Top: sesame bun → lettuce strip → patty strip.
+     Middle: content area (warm-ink dark for readability).
+     Bottom: cheese strip → bun.
+     Identical palette across all KPI cards (brand consistency).
+     ========================================================================= */
+  .burger-card {
+    position: relative;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid rgba(124, 45, 18, 0.5);  /* faint patty-brown border */
+    box-shadow:
+      0 14px 36px -14px rgba(0, 0, 0, 0.55),
+      0 2px 0 0 rgba(255, 178, 114, 0.08) inset;
+  }
+  /* Top bun + sesame seeds + lettuce + patty strips */
+  .burger-card__top {
+    position: relative;
+    height: 30px;
+    background:
+      linear-gradient(180deg, #FFC68A 0%, #FFB272 40%, #F97316 100%);
+    border-bottom: 1px solid #C2410C;
+  }
+  .burger-card__top::before {
+    /* sesame seeds — four dots */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 4px 2px at 18% 55%, #FFEBC8 0%, transparent 90%),
+      radial-gradient(ellipse 4px 2px at 38% 40%, #FFEBC8 0%, transparent 90%),
+      radial-gradient(ellipse 4px 2px at 58% 55%, #FFEBC8 0%, transparent 90%),
+      radial-gradient(ellipse 4px 2px at 78% 40%, #FFEBC8 0%, transparent 90%),
+      radial-gradient(ellipse 4px 2px at 90% 60%, #FFEBC8 0%, transparent 90%);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  .burger-card__lettuce {
+    height: 6px;
+    background: linear-gradient(180deg, #86EFAC 0%, #22C55E 100%);
+    border-bottom: 1px dashed rgba(255,255,255,0.25);
+    /* wavy ruffled bottom edge */
+    -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
+    mask-image: linear-gradient(180deg, #000 80%, transparent);
+  }
+  .burger-card__patty {
+    height: 10px;
+    background:
+      radial-gradient(ellipse 8px 3px at 20% 50%, #2D0A03, transparent),
+      radial-gradient(ellipse 6px 2.5px at 60% 60%, #2D0A03, transparent),
+      radial-gradient(ellipse 7px 2.5px at 82% 45%, #2D0A03, transparent),
+      linear-gradient(180deg, #7C2D12 0%, #5B1F0A 100%);
+  }
+  /* Content area */
+  .burger-card__body {
+    padding: 1.25rem 1.5rem 1.25rem;
+  }
+  /* Cheese + bottom bun strips */
+  .burger-card__cheese {
+    height: 7px;
+    background:
+      linear-gradient(180deg, #FDE68A 0%, #FACC15 100%);
+    /* slight drip on edges */
+    border-top: 1px solid rgba(0,0,0,0.15);
+  }
+  .burger-card__bottom {
+    height: 24px;
+    background:
+      linear-gradient(0deg, #C2410C 0%, #F97316 60%, #FFB272 100%);
+    border-top: 1px solid #C2410C;
+  }
+  /* Optional: per-card accent dot on the patty (so cards aren't identical) */
+  .burger-card--engine  .burger-card__patty::after { content: ''; position: absolute; }
+  /* (accent classes left as hooks for future variation) */
+
+  /* =========================================================================
+     BURGER TEXTURES — patty (grilled meat) bg + lettuce (ruffled frill) edge
+     Used to theme the referral / rank info containers literally.
+     ========================================================================= */
+  .bg-patty {
+    background-image: url("/tex-patty.svg");
+    background-size: 120px 120px;
+    background-repeat: repeat;
+    color: #FFE8C8;
+  }
+  .bg-patty * { color: inherit; }
+
+  .lettuce-top {
+    position: relative;
+    padding-top: 22px;
+  }
+  .lettuce-top::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 16px;
+    background-image: url("/tex-lettuce.svg");
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+
+  /* =========================================================================
+     BURGER-SHAPED RANK TILES — pill outline = burger silhouette
+     Top dome (bun-top) · middle slab (patty) · bottom dome (bun-bottom)
+     ========================================================================= */
+  .burger-tile {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;                                       /* rectangular tile */
+    border: 1.5px solid color-mix(in oklab, var(--neon) 55%, var(--border));
+    background:
+      radial-gradient(circle at 50% 0%,   color-mix(in oklab, var(--neon) 18%, transparent), transparent 55%),
+      radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--neon) 12%, transparent), transparent 55%),
+      var(--card);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--neon) 22%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--neon) 22%, transparent),
+      0 0 30px -8px color-mix(in oklab, var(--neon) 55%, transparent);
+    min-height: 320px;
+  }
+  .burger-tile.is-active {
+    border-color: var(--neon);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--neon) 35%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--neon) 60%, transparent),
+      0 0 42px -4px color-mix(in oklab, var(--neon) 75%, transparent);
+  }
+  /* Top zone — rank illustration + tier quota label */
+  .burger-tile .bun-top {
+    padding: 0.875rem 0.75rem 0.875rem;
+    text-align: center;
+  }
+  .burger-tile .bun-top .tile-hero-img {
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    margin: 0 auto 0.375rem;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+    aspect-ratio: 5 / 4;
+    object-fit: contain;
+  }
+  /* Patty — middle rectangle, the meat of the data, set apart with dashed hairlines */
+  .burger-tile .patty {
+    flex: 1;
+    padding: 1rem 0.75rem;
+    text-align: center;
+    border-top: 1px dashed color-mix(in oklab, var(--neon) 45%, transparent);
+    border-bottom: 1px dashed color-mix(in oklab, var(--neon) 45%, transparent);
+    background: color-mix(in oklab, var(--neon) 5%, transparent);
+  }
+  /* Bottom zone — stats (min stake / max yield) */
+  .burger-tile .bun-bottom {
+    padding: 0.875rem 0.75rem 1rem;
+    text-align: center;
+  }
+
+  /* =========================================================================
+     MOBILE-LEGENDS STYLE GAME BUTTONS — beveled, glow, shine sweep.
+     Use: <button className="ml-btn ml-btn--gold">...</button>
+     ========================================================================= */
+  .ml-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    font-family: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+    transition:
+      transform 140ms var(--ease-out),
+      filter 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),       /* subtle top highlight */
+      inset 0 -1px 2px rgba(0, 0, 0, 0.3),            /* gentle bottom shadow */
+      0 2px 0 rgba(0, 0, 0, 0.35),                    /* small drop shadow */
+      0 0 10px -2px var(--ml-glow, transparent);     /* light color bloom */
+  }
+  /* top sheen overlay — quieter */
+  .ml-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, transparent 60%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  /* diagonal shine — only on hover, single pass */
+  .ml-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -50%;
+    width: 40%;
+    background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+    transform: skewX(-22deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: left 600ms ease-out, opacity 200ms ease-out;
+  }
+  @media (hover: hover) {
+    .ml-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.3),
+        0 3px 0 rgba(0, 0, 0, 0.4),
+        0 0 16px -2px var(--ml-glow, transparent);
+    }
+    .ml-btn:hover::after { left: 110%; opacity: 1; }
+  }
+  .ml-btn:active {
+    transform: translateY(2px);
+    filter: brightness(0.95);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 0 10px var(--ml-glow, transparent);
+  }
+  .ml-btn:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.65) brightness(0.7);
+    animation: none;
+  }
+
+  /* Color variants — quieter glow, subtler gradient (no more "candy" look) */
+  .ml-btn--cyan {
+    --ml-glow: rgba(45, 212, 191, 0.4);
+    background: linear-gradient(180deg, #5EEAD4 0%, #14B8A6 60%, #0F766E 100%);
+    color: #042F2E;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  .ml-btn--blue {
+    --ml-glow: rgba(59, 130, 246, 0.4);
+    background: linear-gradient(180deg, #60A5FA 0%, #2563EB 60%, #1E40AF 100%);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  }
+  .ml-btn--gold {
+    --ml-glow: rgba(245, 158, 11, 0.45);
+    background: linear-gradient(180deg, #FBBF24 0%, #D97706 60%, #92400E 100%);
+    color: #3F1D0A;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .ml-btn--red {
+    --ml-glow: rgba(220, 38, 38, 0.4);
+    background: linear-gradient(180deg, #EF4444 0%, #B91C1C 60%, #7F1D1D 100%);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  }
+  .ml-btn--violet {
+    --ml-glow: rgba(147, 51, 234, 0.4);
+    background: linear-gradient(180deg, #A78BFA 0%, #7C3AED 60%, #4C1D95 100%);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  }
+  .ml-btn--silver {
+    --ml-glow: rgba(148, 163, 184, 0.3);
+    background: linear-gradient(180deg, #CBD5E1 0%, #64748B 60%, #334155 100%);
+    color: #0F172A;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  /* Icon-only round variant (e.g. for overflow menu trigger) */
+  .ml-btn--icon { padding: 0; width: 1.75rem; height: 1.75rem; }
+  .ml-btn--sm   { height: 1.75rem; padding: 0.25rem 0.7rem; font-size: 0.625rem; gap: 0.3rem; letter-spacing: 0.08em; }
+
+  /* prefers-reduced-motion guard — disable hover shine sweep transition */
+  @media (prefers-reduced-motion: reduce) {
+    .ml-btn:hover::after { transition: none; opacity: 0; }
+  }
+
+  /* =========================================================================
+     NEON TACTICAL BUTTON — synthwave/arcade HUD aesthetic.
+     Clip-path cut corners + neon outline + inner glow + scanline overlay.
+     Use: <button className="neon-btn neon-btn--cyan">...</button>
+     ========================================================================= */
+  .neon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.85rem;
+    height: 1.75rem;
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+    position: relative;
+    cursor: pointer;
+    isolation: isolate;
+    border: 1.5px solid var(--neon-c, #67E8F9);
+    background:
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--neon-c) 16%, transparent),
+        color-mix(in oklab, var(--neon-c) 6%, transparent));
+    color: var(--neon-c);
+    text-shadow: 0 0 6px var(--neon-c);
+    /* cut corners — top-left + bottom-right */
+    clip-path: polygon(
+      10px 0%, 100% 0%, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%, 0 100%, 0 10px
+    );
+    transition:
+      background 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      transform 100ms var(--ease-out),
+      text-shadow 160ms var(--ease-out);
+    box-shadow:
+      0 0 14px -3px var(--neon-c),
+      inset 0 0 10px -3px var(--neon-c);
+  }
+  /* scanline CRT overlay (subtle) */
+  .neon-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0 2px,
+      rgba(0, 0, 0, 0.16) 2px 3px
+    );
+    pointer-events: none;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+  }
+  /* corner brackets — small accent at TL + BR cut */
+  .neon-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10px;
+    width: 4px; height: 1.5px;
+    background: var(--neon-c);
+    box-shadow:
+      /* bottom-right matching bracket */
+      calc(100% - 4px - 10px - 4px) calc(100% - 1.5px) 0 0 var(--neon-c);
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .neon-btn:hover {
+      background:
+        linear-gradient(180deg,
+          color-mix(in oklab, var(--neon-c) 28%, transparent),
+          color-mix(in oklab, var(--neon-c) 14%, transparent));
+      box-shadow:
+        0 0 22px -2px var(--neon-c),
+        inset 0 0 14px -2px var(--neon-c);
+      text-shadow: 0 0 10px var(--neon-c), 0 0 18px var(--neon-c);
+    }
+  }
+  .neon-btn:active {
+    transform: scale(0.96);
+    background: var(--neon-c);
+    color: rgba(0, 0, 0, 0.85);
+    text-shadow: none;
+  }
+  .neon-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    filter: grayscale(0.5);
+  }
+
+  /* Color variants — synthwave palette */
+  .neon-btn--cyan   { --neon-c: #67E8F9; }
+  .neon-btn--gold   { --neon-c: #FCD34D; }
+  .neon-btn--rose   { --neon-c: #FB7185; }
+  .neon-btn--blue   { --neon-c: #93C5FD; }
+  .neon-btn--violet { --neon-c: #C084FC; }
+  .neon-btn--mint   { --neon-c: #6EE7B7; }
+  .neon-btn--white  { --neon-c: #E5E7EB; }
+
+  /* Icon-only round-rect variant (no text, square clip) */
+  .neon-btn--icon { padding: 0; width: 1.75rem; }
+
+  /* Large CTA variant — taller, bigger text, more horizontal padding.
+     Used for primary actions like "Buy Tokens" on the presale page. */
+  .neon-btn--lg {
+    height: 2.5rem;            /* 40px */
+    padding: 0.5rem 1.75rem;   /* 8px · 28px */
+    font-size: 0.75rem;        /* 12px */
+    letter-spacing: 0.16em;
+    gap: 0.5rem;
+    /* Slightly larger corner cut to match the larger height */
+    clip-path: polygon(
+      12px 0%, 100% 0%, 100% calc(100% - 12px),
+      calc(100% - 12px) 100%, 0% 100%, 0% 12px
+    );
+  }
+
+  /* =========================================================================
+     NEON BTN — JRENG variant. Always-bright arcade CTA.
+       • IDLE: solid BRIGHT cyan gradient (never dim, even when disabled)
+       • HOVER: TEXT lights up white with strong neon glow + bg shifts brighter
+       • ACTIVE: snap inward
+     Use: <button className="neon-btn neon-btn--jreng">
+     ========================================================================= */
+  .neon-btn--jreng {
+    height: 3rem;
+    min-width: 13rem;
+    padding: 0 2.25rem;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9375rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    gap: 0.6rem;
+    /* IDLE — ALWAYS BRIGHT */
+    color: #042F2E;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+    border: 1.5px solid #A5F3FC;
+    background: linear-gradient(180deg, #67E8F9 0%, #22D3EE 55%, #0891B2 100%);
+    background-size: 100% 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    box-shadow:
+      0 0 22px 0  rgba(34, 211, 238, 0.7),
+      0 0 44px -4px rgba(34, 211, 238, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(8, 145, 178, 0.55);
+    clip-path: polygon(
+      14px 0%, 100% 0%, 100% calc(100% - 14px),
+      calc(100% - 14px) 100%, 0% 100%, 0% 14px
+    );
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+  }
+  /* Kill base .neon-btn pseudos */
+  .neon-btn--jreng::before,
+  .neon-btn--jreng::after { content: none; }
+
+  /* HOVER — Sharp DEEP VIOLET text. Synthwave premium pairing
+     (cyan + violet matches Diamond Leader brand DNA). Halo mixes
+     violet + cyan for that "rank up" feel. */
+  .neon-btn--jreng:hover {
+    color: #A855F7;
+    text-shadow: none;
+    background: linear-gradient(180deg, #A5F3FC 0%, #67E8F9 55%, #22D3EE 100%);
+    border-color: #7C3AED;
+    box-shadow:
+      0 0 30px 0  rgba(168, 85, 247, 0.65),
+      0 0 60px -4px rgba(124, 58, 237, 0.45),
+      0 0 110px -10px rgba(103, 232, 249, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 rgba(34, 211, 238, 0.55);
+    transform: translateY(-1px) scale(1.02);
+  }
+  .neon-btn--jreng:active {
+    transform: translateY(0) scale(1);
+    box-shadow:
+      0 0 14px 0 rgba(34, 211, 238, 0.65),
+      inset 0 2px 6px rgba(8, 145, 178, 0.55);
+  }
+  /* DISABLED — keep bright look, only the cursor changes.
+     Override base .neon-btn:disabled (which would drop opacity + grayscale). */
+  .neon-btn--jreng:disabled {
+    cursor: not-allowed;
+    opacity: 1;
+    filter: none;
+  }
+
+  /* JRENG AMBER — jackpot variant for "spin/lucky" actions. */
+  .neon-btn--jreng-amber {
+    background: linear-gradient(180deg, #FBBF24 0%, #F59E0B 55%, #B45309 100%);
+    border-color: #FDE68A;
+    color: #451A03;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 0 22px 0  rgba(251, 191, 36, 0.7),
+      0 0 44px -4px rgba(245, 158, 11, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(180, 83, 9, 0.55);
+  }
+  .neon-btn--jreng-amber:hover {
+    color: #7C2D12;
+    background: linear-gradient(180deg, #FEF3C7 0%, #FDE68A 55%, #F59E0B 100%);
+    border-color: #92400E;
+    box-shadow:
+      0 0 30px 0  rgba(254, 243, 199, 0.95),
+      0 0 60px -4px rgba(251, 191, 36, 0.75),
+      0 0 110px -10px rgba(245, 158, 11, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      inset 0 -1px 0 rgba(245, 158, 11, 0.6);
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  /* JRENG EMERALD — claim/reward variant. */
+  .neon-btn--jreng-emerald {
+    background: linear-gradient(180deg, #34D399 0%, #10B981 55%, #047857 100%);
+    border-color: #A7F3D0;
+    color: #042F2A;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-shadow:
+      0 0 22px 0  rgba(52, 211, 153, 0.7),
+      0 0 44px -4px rgba(16, 185, 129, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(4, 120, 87, 0.55);
+  }
+  .neon-btn--jreng-emerald:hover {
+    color: #052E16;
+    background: linear-gradient(180deg, #D1FAE5 0%, #6EE7B7 55%, #10B981 100%);
+    border-color: #065F46;
+    box-shadow:
+      0 0 30px 0  rgba(209, 250, 229, 0.95),
+      0 0 60px -4px rgba(52, 211, 153, 0.75),
+      0 0 110px -10px rgba(16, 185, 129, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      inset 0 -1px 0 rgba(52, 211, 153, 0.6);
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  /* CONST-POD rose variant + winner pulse state */
+  .const-pod--rose { --cp-c: oklch(0.74 0.2 25); }
+  .const-pod.is-winner {
+    border-color: var(--cp-c);
+    box-shadow:
+      0 0 0 2px color-mix(in oklab, var(--cp-c) 55%, transparent),
+      0 0 36px 0 color-mix(in oklab, var(--cp-c) 70%, transparent),
+      0 0 72px -4px color-mix(in oklab, var(--cp-c) 50%, transparent);
+    animation: const-pod-winner 1.4s ease-in-out infinite;
+  }
+  @keyframes const-pod-winner {
+    0%, 100% { transform: scale(1);    filter: brightness(1.0); }
+    50%      { transform: scale(1.06); filter: brightness(1.3) saturate(1.2); }
+  }
+
+  /* =========================================================================
+     LUCKY WHEEL — Wheel of Fortune visual for the Daily Lucky Break draw.
+       • Circular conic-gradient with 5 segments (one per prize tier)
+       • Fixed pointer at top
+       • Center hub with neon ring + spin button mounted
+       • Spinning state: rotates 4+ turns then settles on the winning segment
+       • Idle state: slow gentle drift to feel alive
+     ========================================================================= */
+  .lucky-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0.5rem 1rem;
+  }
+
+  .lucky-pointer {
+    position: relative;
+    z-index: 5;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 24px solid #FBBF24;
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.9));
+    margin-bottom: -8px;
+    animation: lucky-pointer-bounce 1.3s ease-in-out infinite;
+  }
+  @keyframes lucky-pointer-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(4px); }
+  }
+
+  .lucky-wheel {
+    position: relative;
+    width: clamp(240px, 60vw, 320px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      #94A3B8 0deg     72deg,    /* 0.5% — silver */
+      #22D3EE 72deg    144deg,   /* 1%   — cyan   */
+      #C084FC 144deg   216deg,   /* 3%   — violet */
+      #6EE7B7 216deg   288deg,   /* 30%  — mint   */
+      #FB7185 288deg   360deg    /* 100% — rose   */
+    );
+    transform: rotate(0deg);
+    transition: transform 4.2s cubic-bezier(0.17, 0.7, 0.35, 1);
+    box-shadow:
+      0 0 0 4px oklch(0.13 0.02 250),
+      0 0 0 6px rgba(251, 191, 36, 0.6),
+      0 0 30px -4px rgba(251, 191, 36, 0.55),
+      0 0 60px -8px rgba(251, 191, 36, 0.35),
+      inset 0 0 32px -4px rgba(0, 0, 0, 0.55);
+    animation: lucky-wheel-idle 24s linear infinite;
+  }
+  .lucky-wheel.is-spinning {
+    animation: none;
+  }
+  @keyframes lucky-wheel-idle {
+    to { transform: rotate(360deg); }
+  }
+  /* Inner separator lines between segments */
+  .lucky-wheel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg 71.6deg,
+        rgba(0, 0, 0, 0.45) 71.6deg 72deg
+      );
+    pointer-events: none;
+  }
+  /* Center hub on top of the wheel */
+  .lucky-wheel::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 26%; height: 26%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(251, 191, 36, 0.5), transparent 70%),
+      linear-gradient(180deg, oklch(0.22 0.014 250), oklch(0.13 0.02 250));
+    border: 2px solid #FBBF24;
+    box-shadow:
+      0 0 18px rgba(251, 191, 36, 0.75),
+      inset 0 0 12px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+  }
+
+  /* Segment labels — positioned around the wheel via inline transform */
+  .lucky-wheel-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(11px, 2.6cqi, 15px);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #042F2E;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+    line-height: 1;
+    z-index: 1;
+  }
+
+  /* Outer tick ring around the wheel — adds carnival flair */
+  .lucky-wheel-ticks {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background:
+      repeating-conic-gradient(
+        from 0deg,
+        rgba(251, 191, 36, 0.7) 0deg 1.2deg,
+        transparent 1.2deg 18deg
+      );
+    pointer-events: none;
+    animation: lucky-ticks-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes lucky-ticks-pulse {
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 1; }
+  }
+  .lucky-wheel-frame {
+    position: relative;
+    container-type: inline-size;
+  }
+  /* Reduce idle motion if user prefers */
+  @media (prefers-reduced-motion: reduce) {
+    .lucky-wheel { animation-duration: 90s; }
+    .lucky-pointer { animation: none; }
+    .lucky-wheel-ticks { animation: none; opacity: 0.8; }
+  }
+
+  /* Won segment glow — pseudo-radial mask emitting from the winning tier */
+  .lucky-wheel.is-spun {
+    box-shadow:
+      0 0 0 4px oklch(0.13 0.02 250),
+      0 0 0 6px var(--win-c, #FBBF24),
+      0 0 40px -2px color-mix(in oklab, var(--win-c, #FBBF24) 70%, transparent),
+      0 0 80px -8px color-mix(in oklab, var(--win-c, #FBBF24) 50%, transparent),
+      inset 0 0 32px -4px rgba(0, 0, 0, 0.55);
+  }
+
+  /* =========================================================================
+     JRENG INPUT — Numeric token-amount input slot.
+       • Shell pulses subtly when empty to scream "click me to type"
+       • Left "AMOUNT" prefix tag + right "$BURG" suffix chip = clearly a quantity input
+       • Big Orbitron numerals
+       • Focus state freezes the pulse + cranks the glow
+     Markup:
+       <div class="jreng-shell">
+         <span class="jreng-prefix">AMOUNT</span>
+         <input class="jreng-input" />
+         <span class="jreng-suffix">$BURG</span>
+       </div>
+     ========================================================================= */
+  .jreng-shell {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: 3.25rem;
+    background:
+      linear-gradient(180deg,
+        rgba(34, 211, 238, 0.08),
+        rgba(8, 145, 178, 0.04)),
+      oklch(0.16 0.012 250 / 0.72);
+    border: 1.75px solid rgba(103, 232, 249, 0.55);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      0 0 0 1px rgba(103, 232, 249, 0.12),
+      0 0 18px -4px rgba(34, 211, 238, 0.32),
+      inset 0 0 16px -4px rgba(34, 211, 238, 0.2);
+    cursor: text;
+    animation: jreng-shell-pulse 2.4s ease-in-out infinite;
+  }
+  /* Stop pulsing once user is typing or focused */
+  .jreng-shell:focus-within,
+  .jreng-shell:has(input:not(:placeholder-shown)) {
+    animation: none;
+    border-color: #67E8F9;
+    box-shadow:
+      0 0 0 2px rgba(103, 232, 249, 0.45),
+      0 0 32px -4px rgba(34, 211, 238, 0.75),
+      inset 0 0 20px -4px rgba(34, 211, 238, 0.4);
+  }
+  @keyframes jreng-shell-pulse {
+    0%, 100% {
+      border-color: rgba(103, 232, 249, 0.55);
+      box-shadow:
+        0 0 0 1px rgba(103, 232, 249, 0.12),
+        0 0 18px -4px rgba(34, 211, 238, 0.32),
+        inset 0 0 16px -4px rgba(34, 211, 238, 0.2);
+    }
+    50% {
+      border-color: rgba(165, 243, 252, 0.95);
+      box-shadow:
+        0 0 0 1px rgba(165, 243, 252, 0.3),
+        0 0 28px -4px rgba(103, 232, 249, 0.65),
+        inset 0 0 22px -4px rgba(34, 211, 238, 0.35);
+    }
+  }
+
+  .jreng-prefix,
+  .jreng-suffix {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #67E8F9;
+    background: linear-gradient(180deg,
+      rgba(34, 211, 238, 0.18),
+      rgba(8, 145, 178, 0.1));
+    text-shadow: 0 0 6px rgba(103, 232, 249, 0.5);
+    user-select: none;
+  }
+  .jreng-prefix {
+    border-right: 1px solid rgba(103, 232, 249, 0.3);
+    gap: 0.35rem;
+  }
+  .jreng-suffix {
+    border-left: 1px solid rgba(103, 232, 249, 0.3);
+    color: #FCD34D;
+    text-shadow: 0 0 6px rgba(252, 211, 77, 0.6);
+    background: linear-gradient(180deg,
+      rgba(252, 211, 77, 0.16),
+      rgba(180, 83, 9, 0.08));
+  }
+
+  .jreng-input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 1rem;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #ECFEFF;
+    caret-color: #67E8F9;
+    text-align: right;
+  }
+  .jreng-input::placeholder {
+    color: rgba(165, 243, 252, 0.45);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    font-size: 0.95rem;
+  }
+  /* Hide native number spinners */
+  .jreng-input::-webkit-outer-spin-button,
+  .jreng-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .jreng-input[type="number"] { -moz-appearance: textfield; }
+
+  /* =========================================================================
+     TOKENOMICS BAR + TIER CHIPS — Distribution visualization.
+     ========================================================================= */
+  .tokenomics-bar {
+    display: flex;
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid oklch(0.32 0.02 250 / 0.5);
+    box-shadow:
+      0 0 16px -4px rgba(34, 211, 238, 0.3),
+      inset 0 0 8px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+  .tokenomics-bar::after {
+    /* segmented LED tick mask — same idea as quota-bar but tighter */
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(100% / 20 - 1px),
+      rgba(0, 0, 0, 0.5) calc(100% / 20 - 1px) calc(100% / 20)
+    );
+  }
+  .tokenomics-bar-seg {
+    height: 100%;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    filter: saturate(1.2);
+    transition: filter 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .tokenomics-bar:hover .tokenomics-bar-seg { filter: saturate(1.4) brightness(1.1); }
+
+  /* Tier chips below the bar — clip-path tactical tiles */
+  .tokenomics-tier {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    padding: 0.6rem 0.75rem 0.55rem;
+    background:
+      linear-gradient(135deg,
+        rgba(255, 255, 255, 0.04),
+        transparent 60%),
+      oklch(0.18 0.012 250 / 0.55);
+    border: 1px solid oklch(0.32 0.02 250 / 0.45);
+    border-radius: 0.5rem;
+    isolation: isolate;
+    overflow: hidden;
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  /* Each chip gets a left rail in its bg color (set via the bg color class) */
+  .tokenomics-tier::before {
+    content: '';
+    position: absolute;
+    top: 18%; bottom: 18%; left: 0;
+    width: 3px;
+    background: currentColor;
+    border-radius: 0 2px 2px 0;
+    opacity: 0.9;
+  }
+  .tokenomics-tier:hover {
+    border-color: oklch(0.55 0.04 250 / 0.6);
+    background:
+      linear-gradient(135deg,
+        rgba(255, 255, 255, 0.08),
+        transparent 60%),
+      oklch(0.2 0.014 250 / 0.7);
+  }
+  /* Inherit the seg color → flow into ::before rail */
+  .tokenomics-tier.bg-cyan-400    { color: #22D3EE; }
+  .tokenomics-tier.bg-blue-400    { color: #60A5FA; }
+  .tokenomics-tier.bg-violet-400  { color: #A78BFA; }
+  .tokenomics-tier.bg-amber-400   { color: #FBBF24; }
+  .tokenomics-tier.bg-emerald-400 { color: #34D399; }
+  /* Strip the actual bg color from the chip body — the rail-via-currentColor
+     IS the indicator, we don't want a flat color block */
+  .tokenomics-tier.bg-cyan-400,
+  .tokenomics-tier.bg-blue-400,
+  .tokenomics-tier.bg-violet-400,
+  .tokenomics-tier.bg-amber-400,
+  .tokenomics-tier.bg-emerald-400 {
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, currentColor 6%, transparent),
+        transparent 60%),
+      oklch(0.18 0.012 250 / 0.55);
+  }
+
+  .tokenomics-tier-pct {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-shadow: 0 0 10px currentColor;
+  }
+  .tokenomics-tier-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: oklch(0.7 0.015 250);
+    line-height: 1.1;
+  }
+
+  /* Quick-pick chips below the input — instant fill buttons */
+  .jreng-pick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.32rem 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    color: #A5F3FC;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(103, 232, 249, 0.35);
+    border-radius: 4px;
+    transition: all 180ms cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    /* No min-width floor: the chips live in a `grid grid-cols-5` whose
+       minmax(0,1fr) tracks size each chip to exactly 1/5 of the row. A floor
+       here would stop them shrinking on narrow mobile and push MAX off-screen. */
+    min-width: 0;
+  }
+  .jreng-pick:hover {
+    background: rgba(34, 211, 238, 0.22);
+    border-color: #67E8F9;
+    color: #ECFEFF;
+    box-shadow: 0 0 10px -2px rgba(103, 232, 249, 0.7);
+    transform: translateY(-1px);
+  }
+  .jreng-pick:active { transform: translateY(0); }
+
+  /* =========================================================================
+     QUOTA PROGRESS BAR — animated "menyala-nyala" LED feel.
+     Combines: light sweep traversing left→right + pulsing outer glow + segmented tick marks.
+     ========================================================================= */
+  .quota-bar-shell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.45);
+  }
+  /* segmented tick mask — ALWAYS on top, semi-transparent darken lines */
+  .quota-bar-shell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(100% / 12 - 1px),
+      rgba(0,0,0,0.45) calc(100% / 12 - 1px) calc(100% / 12)
+    );
+  }
+  .quota-bar-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 9999px;
+    overflow: hidden;
+    transition: width 700ms cubic-bezier(0.23, 1, 0.32, 1);
+    background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 50%, #FDE68A 100%);
+    /* Throb via box-shadow (NOT filter) — filter creates compositor layer
+       that desyncs from scroll. Box-shadow keeps the bar in the document
+       layer. */
+    animation: quota-bar-throb 1.4s ease-in-out infinite;
+    box-shadow:
+      0 0 18px 0 rgba(251, 191, 36, 0.85),
+      0 0 36px -2px rgba(251, 191, 36, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.22) inset;
+  }
+  /* Traveling white sheen — uses background-position animation (no transform)
+     to keep the sheen in the same compositor layer as parent. */
+  .quota-bar-fill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 35%,
+      rgba(255, 255, 255, 0.92) 50%,
+      rgba(255, 255, 255, 0) 65%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 250% 100%;
+    background-position: 250% 0;
+    background-repeat: no-repeat;
+    animation: quota-bar-sweep 1.6s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Blink dot at the leading edge — static positioning via top:calc
+     (no transform for centering). Pulse via opacity + box-shadow only. */
+  .quota-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 4px);
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FFFBEB;
+    box-shadow:
+      0 0 8px 2px rgba(255, 251, 235, 0.95),
+      0 0 16px 4px rgba(251, 191, 36, 0.8),
+      0 0 28px 8px rgba(251, 191, 36, 0.45);
+    animation: quota-bar-blink 0.8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+  /* full / danger / success variants */
+  .quota-bar-fill--full {
+    background: linear-gradient(90deg, #C026D3 0%, #E879F9 50%, #F0ABFC 100%);
+    animation-duration: 0.9s;
+    box-shadow:
+      0 0 22px 0 rgba(232, 121, 249, 0.95),
+      0 0 44px -2px rgba(232, 121, 249, 0.65),
+      0 0 0 1px rgba(255, 255, 255, 0.28) inset;
+  }
+  .quota-bar-fill--full::after {
+    background: #FAE8FF;
+    box-shadow:
+      0 0 10px 2px rgba(250, 232, 255, 0.95),
+      0 0 22px 6px rgba(232, 121, 249, 0.85),
+      0 0 38px 10px rgba(232, 121, 249, 0.5);
+  }
+  .quota-bar-fill--danger {
+    background: linear-gradient(90deg, #DC2626 0%, #F87171 50%, #FCA5A5 100%);
+    animation-duration: 0.7s;
+    box-shadow:
+      0 0 20px 0 rgba(248, 113, 113, 0.95),
+      0 0 40px -2px rgba(220, 38, 38, 0.6);
+  }
+  .quota-bar-fill--success {
+    background: linear-gradient(90deg, #16A34A 0%, #4ADE80 50%, #BBF7D0 100%);
+    box-shadow:
+      0 0 18px 0 rgba(74, 222, 128, 0.85),
+      0 0 36px -2px rgba(22, 163, 74, 0.55);
+  }
+  .quota-bar-fill--cyan {
+    background: linear-gradient(90deg, #0891B2 0%, #22D3EE 50%, #A5F3FC 100%);
+    box-shadow:
+      0 0 20px 0 rgba(34, 211, 238, 0.9),
+      0 0 40px -2px rgba(8, 145, 178, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.22) inset;
+  }
+  .quota-bar-fill--cyan::after {
+    background: #ECFEFF;
+    box-shadow:
+      0 0 10px 2px rgba(236, 254, 255, 0.95),
+      0 0 22px 6px rgba(34, 211, 238, 0.85),
+      0 0 38px 10px rgba(8, 145, 178, 0.5);
+  }
+
+  /* Sweep — background-position only (no transform). The sheen gradient
+     slides across the bar by repositioning the background. */
+  @keyframes quota-bar-sweep {
+    0%   { background-position: 250%  0; }
+    100% { background-position: -150% 0; }
+  }
+  /* Throb — box-shadow size + intensity only (no filter brightness). */
+  @keyframes quota-bar-throb {
+    0%, 100% {
+      box-shadow:
+        0 0 18px 0  rgba(251, 191, 36, 0.85),
+        0 0 36px -2px rgba(251, 191, 36, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.22) inset;
+    }
+    50% {
+      box-shadow:
+        0 0 26px 0  rgba(255, 235, 100, 1),
+        0 0 52px -2px rgba(251, 191, 36, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    }
+  }
+  /* Blink — opacity + box-shadow size (no transform scale). */
+  @keyframes quota-bar-blink {
+    0%, 100% {
+      opacity: 0.6;
+      box-shadow:
+        0 0 5px 1px rgba(255, 251, 235, 0.7),
+        0 0 10px 2px rgba(251, 191, 36, 0.55),
+        0 0 18px 5px rgba(251, 191, 36, 0.3);
+    }
+    50% {
+      opacity: 1;
+      box-shadow:
+        0 0 10px 3px rgba(255, 251, 235, 0.95),
+        0 0 20px 5px rgba(251, 191, 36, 0.85),
+        0 0 32px 9px rgba(251, 191, 36, 0.55);
+    }
+  }
+
+  /* Quota bar is an explicit "live status" indicator — the throb + sweep +
+     blink is the entire point. Even with prefers-reduced-motion we keep a
+     gentler version so users still see the bar is alive. */
+  @media (prefers-reduced-motion: reduce) {
+    .quota-bar-fill { animation-duration: 3s; }
+    .quota-bar-fill::before { animation-duration: 3s; opacity: 0.8; }
+    .quota-bar-fill::after  { animation-duration: 1.6s; }
+  }
+
+  /* =========================================================================
+     NEON SWEEP — Traveling sheen across text. Mirrors the trading wallet
+     quota bar's left-to-right white sweep, but applied as a moving
+     highlight band on top of the cyan numeral. No flickering — feels
+     "alive" without looking broken.
+       • Steady cyan base color (background-clip: text)
+       • Bright paper-white highlight at gradient center sweeps L→R
+       • drop-shadow halo gives the neon glow (text-shadow doesn't work
+         with transparent text + background-clip)
+     ========================================================================= */
+  .neon-sweep {
+    /* Symmetric gradient — cyan at both 0% and 100% so when background-repeat
+       tiles the image, the seam between repeats is invisible (cyan→cyan).
+       This means the text is ALWAYS fully painted regardless of where the
+       sweep highlight is, so no characters break off mid-animation. */
+    background-image: linear-gradient(
+      90deg,
+      #67E8F9 0%,
+      #67E8F9 30%,
+      #A5F3FC 42%,
+      #F0FDFF 50%,
+      #A5F3FC 58%,
+      #67E8F9 70%,
+      #67E8F9 100%
+    );
+    background-size: 220% 100%;
+    background-repeat: repeat;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    animation: neon-sweep-anim 2.6s linear infinite;
+    will-change: background-position;
+  }
+  @keyframes neon-sweep-anim {
+    /* Slide one full image-width to the LEFT — visually the highlight
+       moves left → right across the text. background-repeat: repeat
+       fills the rest with the same cyan base (seamless). */
+    0%   { background-position: 220% 0; }
+    100% { background-position: 0%   0; }
+  }
+  /* Reduced motion — slow the sweep but keep it running (mirrors the
+     quota-bar precedent — the motion IS the live indicator). */
+  @media (prefers-reduced-motion: reduce) {
+    .neon-sweep { animation-duration: 5s; }
+    .neon-sweep-emerald { animation-duration: 5s; }
+  }
+
+  /* Emerald variant — same sweep mechanic as .neon-sweep but green-tinted. */
+  .neon-sweep-emerald {
+    background-image: linear-gradient(
+      90deg,
+      #34D399 0%,
+      #34D399 30%,
+      #6EE7B7 42%,
+      #ECFDF5 50%,
+      #6EE7B7 58%,
+      #34D399 70%,
+      #34D399 100%
+    );
+    background-size: 220% 100%;
+    background-repeat: repeat;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    animation: neon-sweep-anim 2.6s linear infinite;
+    will-change: background-position;
+  }
+
+  /* Rainbow variant — 8 hues cycling through the text. First & last stop
+     match (rose) so the seamless repeat doesn't break the loop. */
+  .neon-sweep-rainbow {
+    background-image: linear-gradient(
+      90deg,
+      #FB7185 0%,      /* rose   */
+      #FB923C 12.5%,   /* orange */
+      #FCD34D 25%,     /* yellow */
+      #A3E635 37.5%,   /* lime   */
+      #6EE7B7 50%,     /* mint   */
+      #67E8F9 62.5%,   /* cyan   */
+      #93C5FD 75%,     /* blue   */
+      #C084FC 87.5%,   /* violet */
+      #FB7185 100%     /* rose (seam) */
+    );
+    background-size: 240% 100%;
+    background-repeat: repeat;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    animation: neon-sweep-anim 4s linear infinite;
+    will-change: background-position;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .neon-sweep-rainbow { animation-duration: 8s; }
+  }
+
+  /* Per-rank neon hues (--neon is the local color the utilities above bind to) */
+  .neon-membership { --neon: oklch(0.72 0.14 50);  }  /* bronze / copper */
+  .neon-leader     { --neon: oklch(0.84 0.02 250); }  /* silver / platinum */
+  .neon-gold       { --neon: oklch(0.86 0.18 80);  }  /* neon amber */
+  .neon-diamond    { --neon: oklch(0.85 0.18 200); }  /* neon cyan */
+  .neon-direct     { --neon: oklch(0.78 0.18 50);  }  /* burger-orange (brand link) */
+  .neon-magenta    { --neon: oklch(0.72 0.28 340); }  /* hot magenta */
+  .neon-emerald    { --neon: oklch(0.78 0.22 150); }  /* neon emerald-green */
+
+  /* =========================================================================
+     PRIZE CHIP — Casino poker chip for Lucky Break prize tiers.
+       • Circular tier-colored disc with 8 white edge "ridges"
+         (via repeating-conic-gradient)
+       • Radial highlight gives 3D ball effect
+       • Inset shadows (top highlight + bottom shadow) + drop-shadow base
+       • Hover: tilt + lift
+       • Winner: pulse + extra glow halo
+     ========================================================================= */
+  .prize-chip {
+    --chip-c: #94A3B8;
+    position: relative;
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.45));
+  }
+  .prize-chip-edge {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--chip-c);
+    /* 8 white edge "ridges" — one every 45° spanning 8° each */
+    -webkit-mask:
+      repeating-conic-gradient(
+        from -4deg,
+        black 0deg 8deg,
+        transparent 8deg 45deg
+      );
+    mask:
+      repeating-conic-gradient(
+        from -4deg,
+        black 0deg 8deg,
+        transparent 8deg 45deg
+      );
+  }
+  .prize-chip-face {
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 28%,
+        color-mix(in oklab, var(--chip-c) 40%, white) 0%,
+        var(--chip-c) 55%,
+        color-mix(in oklab, var(--chip-c) 70%, black) 100%
+      );
+    border: 1.5px solid color-mix(in oklab, var(--chip-c) 50%, black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.05rem;
+    box-shadow:
+      inset 0 -4px 8px rgba(0, 0, 0, 0.35),
+      inset 0 2px 4px rgba(255, 255, 255, 0.25),
+      0 0 14px -3px var(--chip-c);
+  }
+  .prize-chip-pct {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    line-height: 1;
+    tab-size: 0;
+  }
+  .prize-chip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.78);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 1px;
+  }
+
+  /* Tier color variants */
+  .prize-chip--silver  { --chip-c: #94A3B8; }
+  .prize-chip--cyan    { --chip-c: #22D3EE; }
+  .prize-chip--violet  { --chip-c: #A78BFA; }
+  .prize-chip--emerald { --chip-c: #10B981; }
+  .prize-chip--rose    { --chip-c: #EF4444; }
+
+  /* Hover — chip tilts and lifts */
+  @media (hover: hover) {
+    .prize-chip:hover {
+      transform: translateY(-3px) rotate(-4deg);
+      filter:
+        drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 8px var(--chip-c));
+    }
+  }
+  /* Winner — pulsing scale + intense glow */
+  .prize-chip.is-winner {
+    animation: prize-chip-win 1.3s ease-in-out infinite;
+    filter:
+      drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5))
+      drop-shadow(0 0 18px var(--chip-c))
+      drop-shadow(0 0 32px var(--chip-c));
+    z-index: 2;
+  }
+  @keyframes prize-chip-win {
+    0%, 100% { transform: scale(1)    rotate(-3deg); }
+    50%      { transform: scale(1.12) rotate(3deg);  }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prize-chip.is-winner { animation: none; }
+  }
+
+  /* =========================================================================
+     JACKPOT NUM — Las Vegas marquee style. The NUMBER itself is the hero:
+       • Big Orbitron percentage with strong tier-colored neon halo
+       • Throbbing brightness + halo expand/contract cycle
+       • Brief micro-flickers (like a real neon tube struggling to stay lit)
+       • Different cycle duration per tier so they don't all sync
+       • Tiny BONUS micro-label below, static and muted
+       • Winner state: faster, bigger scale-pulse + bonus glow
+     ========================================================================= */
+  .jackpot-num {
+    --jn-c: #67E8F9;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.18rem;
+    min-width: 64px;
+    padding: 0.25rem 0.4rem;
+  }
+  .jackpot-num-pct {
+    position: relative;
+    font-family: 'Orbitron', monospace;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    color: var(--jn-c);
+    line-height: 1;
+    /* Base glow is STATIC. Animating text-shadow/box-shadow directly repaints
+       every frame and ghosts during scroll (reproduced on Windows). The
+       breathing lives on the ::after overlay below, which only animates
+       OPACITY — a pure compositor property that cannot ghost. */
+    text-shadow:
+      0 0 3px  var(--jn-c),
+      0 0 8px  color-mix(in oklab, var(--jn-c) 70%, transparent),
+      0 0 16px color-mix(in oklab, var(--jn-c) 35%, transparent);
+  }
+  /* Breathing glow — duplicated text (via data-glow attr) carrying a stronger
+     STATIC halo, cross-faded in/out with opacity only. */
+  .jackpot-num-pct::after {
+    content: attr(data-glow);
+    position: absolute;
+    inset: 0;
+    color: var(--jn-c);
+    text-shadow:
+      0 0 8px  var(--jn-c),
+      0 0 22px var(--jn-c),
+      0 0 40px color-mix(in oklab, var(--jn-c) 70%, transparent),
+      0 0 60px color-mix(in oklab, var(--jn-c) 45%, transparent);
+    opacity: 0;
+    animation: jackpot-glow-breathe 2.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  /* Shared opacity-only pulse — compositor-driven, scroll-safe. */
+  @keyframes jackpot-glow-breathe {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 1; }
+  }
+  .jackpot-num-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 0.3rem;
+    /* Static tier color + glow; kelap-kelip via opacity-only blink (the old
+       rainbow animated color/text-shadow per frame → scroll ghosting). */
+    color: var(--jn-c);
+    text-shadow: 0 0 6px color-mix(in oklab, var(--jn-c) 70%, transparent);
+    animation: jackpot-label-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes jackpot-label-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+  }
+  /* Per-tier colors + tiny stagger so they breathe / kelap-kelip out-of-sync */
+  .jackpot-num--silver  { --jn-c: #E2E8F0; }
+  .jackpot-num--silver  .jackpot-num-pct::after { animation-delay: 0s;    animation-duration: 3.1s; }
+  .jackpot-num--silver  .jackpot-num-label      { animation-delay: 0s;   }
+  .jackpot-num--cyan    { --jn-c: #67E8F9; }
+  .jackpot-num--cyan    .jackpot-num-pct::after { animation-delay: 0.4s;  animation-duration: 2.7s; }
+  .jackpot-num--cyan    .jackpot-num-label      { animation-delay: 0.7s; }
+  .jackpot-num--violet  { --jn-c: #C084FC; }
+  .jackpot-num--violet  .jackpot-num-pct::after { animation-delay: 0.8s;  animation-duration: 2.9s; }
+  .jackpot-num--violet  .jackpot-num-label      { animation-delay: 1.4s; }
+  .jackpot-num--emerald { --jn-c: #6EE7B7; }
+  .jackpot-num--emerald .jackpot-num-pct::after { animation-delay: 1.2s;  animation-duration: 2.6s; }
+  .jackpot-num--emerald .jackpot-num-label      { animation-delay: 2.1s; }
+  .jackpot-num--rose    { --jn-c: #FB7185; }
+  .jackpot-num--rose    .jackpot-num-pct::after { animation-delay: 1.6s;  animation-duration: 2.4s; }
+  .jackpot-num--rose    .jackpot-num-label      { animation-delay: 2.8s; }
+  /* Winner state has its own burst animation — hide the breathe overlay. */
+  .jackpot-num.is-winner .jackpot-num-pct::after { display: none; }
+
+  /* Winner — bigger, faster, more intense */
+  .jackpot-num.is-winner .jackpot-num-pct {
+    font-size: 34px;
+    animation: jackpot-win 0.7s ease-in-out infinite;
+  }
+  .jackpot-num.is-winner .jackpot-num-label {
+    color: var(--jn-c);
+    animation: jackpot-label-blink 0.7s steps(2) infinite;
+  }
+  @keyframes jackpot-win {
+    0%, 100% {
+      transform: scale(1);
+      text-shadow:
+        0 0 8px  var(--jn-c),
+        0 0 20px var(--jn-c),
+        0 0 38px var(--jn-c),
+        0 0 60px color-mix(in oklab, var(--jn-c) 70%, transparent);
+    }
+    50% {
+      transform: scale(1.12);
+      text-shadow:
+        0 0 12px var(--jn-c),
+        0 0 30px var(--jn-c),
+        0 0 56px var(--jn-c),
+        0 0 86px color-mix(in oklab, var(--jn-c) 80%, transparent);
+    }
+  }
+  @keyframes jackpot-label-blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.3; }
+  }
+
+  /* NOTE: All continuous animation on this page must be OPACITY or TRANSFORM
+     only (compositor properties). Animating text-shadow/box-shadow/color
+     repaints per frame and ghosts during scroll — reproduced twice on
+     Windows. Pattern: static glow + opacity-fading stronger-glow overlay. */
+
+  /* =========================================================================
+     PERIOD TRACK — Tournament/timeline visualization for the Lucky Break
+     draw schedule. 4 connected "stops" on a horizontal track:
+       • Past period: dimmed slate
+       • Current period: bigger gold node + pulsing glow + animated LED badge
+       • Future period: gold outline with muted fill
+     ========================================================================= */
+  .period-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding: 0.4rem 0;
+  }
+  /* Connector line between stops */
+  .period-track::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(251, 191, 36, 0.45) 12%,
+      rgba(251, 191, 36, 0.45) 88%,
+      transparent 100%);
+    z-index: 0;
+  }
+  .period-stop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 1;
+  }
+  .period-stop-dot {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%,
+        rgba(251, 191, 36, 0.16),
+        rgba(251, 191, 36, 0.05) 70%
+      ),
+      oklch(0.13 0.02 250);
+    border: 1.5px solid rgba(251, 191, 36, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: rgba(251, 191, 36, 0.85);
+    transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+  }
+  .period-stop-days {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.72);
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  /* CURRENT period — bigger gold node + pulse + LED badge */
+  .period-stop.is-now .period-stop-dot {
+    width: 60px;
+    height: 60px;
+    margin-top: -4px;
+    background: linear-gradient(180deg, #FCD34D 0%, #F59E0B 55%, #B45309 100%);
+    border: 2px solid #FDE68A;
+    color: #451A03;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+    /* Base halo static; the pulse lives on the ::after overlay (opacity-only,
+       compositor-safe). Animating box-shadow directly ghosted during scroll. */
+    box-shadow:
+      0 0 22px 0 rgba(251, 191, 36, 0.65),
+      0 0 44px -4px rgba(251, 191, 36, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(180, 83, 9, 0.55);
+  }
+  /* Pulsing halo ring — static strong shadow, faded via opacity only. */
+  .period-stop.is-now .period-stop-dot::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 30px 0 rgba(251, 191, 36, 0.85),
+      0 0 60px -4px rgba(251, 191, 36, 0.55);
+    opacity: 0;
+    animation: jackpot-glow-breathe 2.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .period-stop.is-now .period-stop-days {
+    color: #FCD34D;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+  /* "NOW" LED pill */
+  .period-stop-now {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #FCD34D;
+    background: rgba(251, 191, 36, 0.18);
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-shadow: 0 0 6px rgba(251, 191, 36, 0.7);
+  }
+  .period-stop-now::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #FCD34D;
+    /* Static glow; blink is opacity-ONLY (the old keyframes also animated
+       box-shadow, which repaints per frame → scroll ghosting). */
+    box-shadow: 0 0 6px #FCD34D;
+    animation: period-now-blink 1.4s ease-in-out infinite;
+  }
+  @keyframes period-now-blink {
+    0%, 100% { opacity: 0.4; }
+    50%      { opacity: 1; }
+  }
+  /* PAST period — dimmed slate */
+  .period-stop.is-past .period-stop-dot {
+    background: rgba(100, 116, 139, 0.1);
+    border-color: rgba(100, 116, 139, 0.3);
+    color: rgba(148, 163, 184, 0.55);
+  }
+  .period-stop.is-past .period-stop-days {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* =========================================================================
+     JACKPOT HEADER — Title block for the Daily Jackpot card.
+       • Pulsing capsule icon (radial gold with halo)
+       • Two-tone Orbitron title (muted "Daily" + bright accent "Jackpot")
+       • Mono uppercase tagline below
+       • Floating sparkle dots around the title for celebratory motion
+     ========================================================================= */
+  .jackpot-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .jackpot-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    position: relative;
+  }
+  /* Floating sparkle glints — 3 tiny dots that pulse around the title */
+  .jackpot-header-row::before,
+  .jackpot-header-row::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #FCD34D;
+    box-shadow: 0 0 8px #FCD34D, 0 0 16px rgba(251, 191, 36, 0.6);
+    pointer-events: none;
+  }
+  .jackpot-header-row::before {
+    top: 2px;
+    left: 36px;
+    animation: jackpot-sparkle 2.4s ease-in-out infinite;
+  }
+  .jackpot-header-row::after {
+    top: -4px;
+    left: 180px;
+    animation: jackpot-sparkle 2.4s ease-in-out infinite;
+    animation-delay: 1.2s;
+  }
+  @keyframes jackpot-sparkle {
+    /* Opacity ONLY — the glow lives in the element's static box-shadow.
+       Opacity animates on the compositor (no repaint), so it can't ghost
+       during scroll the way animated shadows do. */
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 1; }
+  }
+
+  .jackpot-icon {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%,
+        rgba(252, 211, 77, 0.45),
+        rgba(245, 158, 11, 0.18) 70%
+      );
+    border: 1.5px solid rgba(252, 211, 77, 0.55);
+    color: #FCD34D;
+    /* Base halo static; pulse on the ::after overlay (opacity-only). */
+    box-shadow:
+      0 0 16px -2px rgba(251, 191, 36, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .jackpot-icon::after {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 30px 0 rgba(251, 191, 36, 0.95),
+      0 0 50px -4px rgba(251, 191, 36, 0.6);
+    opacity: 0;
+    animation: jackpot-glow-breathe 2.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .jackpot-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .jackpot-title-mute {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+  }
+  .jackpot-title-accent {
+    color: #FCD34D;
+    text-shadow:
+      0 0 8px  rgba(251, 191, 36, 0.55),
+      0 0 18px rgba(251, 191, 36, 0.3);
+  }
+
+  .jackpot-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    line-height: 1;
+  }
+  .jackpot-tagline-hot {
+    color: #FB7185;
+    font-weight: 800;
+    text-shadow: 0 0 8px rgba(251, 113, 133, 0.55);
+  }
+
+  .jackpot-desc {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.55;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  /* =========================================================================
+     JACKPOT DISPENSER — right-column control panel for Daily Jackpot:
+       • TOKEN BAY: bouncing jackpot capsule showing today's attempt (1 or 0)
+       • PULL LEVER: big "PULL TO SPIN" button (lever-style, traveling sheen)
+       • REWARD CHUTE: emerald display where the prize "drops out" + CLAIM
+     All three blocks have continuous tasteful animations even at idle to
+     keep the panel feeling alive — same precedent as quota-bar / jackpot.
+     ========================================================================= */
+
+  /* TOKEN BAY — capsule dispenser */
+  .jackpot-bay {
+    position: relative;
+    padding: 1rem 1rem 0.85rem;
+    background:
+      radial-gradient(ellipse at 50% 0%,
+        rgba(251, 191, 36, 0.12),
+        transparent 70%),
+      oklch(0.13 0.02 250 / 0.7);
+    border: 1px solid rgba(251, 191, 36, 0.28);
+    border-radius: 0.9rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .jackpot-bay-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+    color: rgba(251, 191, 36, 0.8);
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+    margin-bottom: 0.75rem;
+  }
+
+  /* The capsule itself */
+  .jackpot-capsule {
+    position: relative;
+    width: 60px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 30px 30px 30px 30px / 50% 50% 38% 38%;
+    background:
+      /* bottom half — deeper amber */
+      linear-gradient(180deg, transparent 0%, transparent 50%, #B45309 50%, #92400E 100%),
+      /* top half — bright gold */
+      linear-gradient(180deg, #FCD34D 0%, #F59E0B 50%, transparent 50%);
+    border: 2px solid #FDE68A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 32px;
+    font-weight: 900;
+    color: #451A03;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    /* Static halo — animated box-shadow repaints per frame → scroll ghosting. */
+    box-shadow:
+      0 0 28px 0  rgba(251, 191, 36, 0.8),
+      0 0 56px -4px rgba(251, 191, 36, 0.48),
+      inset 0 -10px 14px rgba(0, 0, 0, 0.35),
+      inset 0 3px 6px rgba(255, 255, 255, 0.5);
+  }
+  /* Glossy highlight on the capsule's upper-left */
+  .jackpot-capsule::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 16px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    filter: blur(1.5px);
+    pointer-events: none;
+  }
+  /* Tiny "spark" orbiting around the ready capsule */
+  .jackpot-capsule::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FEF3C7;
+    box-shadow:
+      0 0 8px #FCD34D,
+      0 0 16px rgba(251, 191, 36, 0.7);
+    animation: jackpot-spark 1.6s ease-in-out infinite;
+  }
+  @keyframes jackpot-spark {
+    /* Opacity ONLY — glow is the element's static box-shadow. Compositor
+       animates alpha without repainting, so scrolling can't ghost it. */
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 1; }
+  }
+  /* Empty / locked state — no attempts */
+  .jackpot-capsule.is-empty {
+    background:
+      linear-gradient(180deg, transparent 0%, transparent 50%, rgba(71, 85, 105, 0.5) 50%, rgba(51, 65, 85, 0.7) 100%),
+      linear-gradient(180deg, rgba(148, 163, 184, 0.3) 0%, rgba(100, 116, 139, 0.4) 50%, transparent 50%);
+    border-color: rgba(148, 163, 184, 0.4);
+    color: rgba(148, 163, 184, 0.5);
+    text-shadow: none;
+    box-shadow:
+      inset 0 -8px 12px rgba(0, 0, 0, 0.35),
+      inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    animation: none;
+  }
+  .jackpot-capsule.is-empty::after { display: none; }
+
+  .jackpot-bay-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+    line-height: 1.4;
+  }
+  .jackpot-bay-status.is-ready {
+    color: #FCD34D;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.55);
+  }
+
+  /* PULL LEVER — the big spin button */
+  .jackpot-pull {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    height: 56px;
+    font-family: 'Orbitron', monospace;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #451A03;
+    border: 2px solid #FDE68A;
+    background:
+      radial-gradient(ellipse at 50% 0%,
+        rgba(255, 255, 255, 0.35),
+        transparent 60%),
+      linear-gradient(180deg, #FCD34D 0%, #F59E0B 55%, #B45309 100%);
+    border-radius: 0.9rem;
+    cursor: pointer;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    /* Static halo — the old ready-pulse animated box-shadow, which repaints
+       every frame and ghosts during scroll. */
+    box-shadow:
+      0 0 30px 0 rgba(251, 191, 36, 0.8),
+      0 0 60px -4px rgba(251, 191, 36, 0.52),
+      inset 0 2px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -5px 10px rgba(180, 83, 9, 0.5);
+    transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+  }
+  /* Traveling sheen across the button — transform-only (compositor-driven,
+     no per-frame repaint, scroll-safe). The gradient strip slides across
+     inside the button's overflow:hidden box. */
+  .jackpot-pull::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 62%,
+      transparent 100%);
+    transform: translateX(-100%);
+    animation: jackpot-pull-sheen 2.6s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes jackpot-pull-sheen {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .jackpot-pull:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+  }
+  .jackpot-pull:active:not(:disabled) {
+    transform: translateY(2px) scale(0.99);
+    box-shadow:
+      0 0 14px 0 rgba(251, 191, 36, 0.55),
+      inset 0 4px 8px rgba(180, 83, 9, 0.55);
+    animation: none;
+  }
+  .jackpot-pull:disabled {
+    background: linear-gradient(180deg, rgba(100, 116, 139, 0.3) 0%, rgba(71, 85, 105, 0.4) 100%);
+    border-color: rgba(148, 163, 184, 0.35);
+    color: rgba(148, 163, 184, 0.6);
+    text-shadow: none;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    animation: none;
+  }
+  .jackpot-pull:disabled::after { display: none; }
+
+  /* REWARD CHUTE — emerald display where the prize drops */
+  .jackpot-reward {
+    position: relative;
+    padding: 1rem 1rem 0.95rem;
+    background:
+      radial-gradient(ellipse at 50% 0%,
+        rgba(52, 211, 153, 0.14),
+        transparent 70%),
+      oklch(0.13 0.02 250 / 0.7);
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    border-radius: 0.9rem;
+    overflow: hidden;
+  }
+  /* Reward chute opening at top — looks like a slot */
+  .jackpot-reward::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56%;
+    height: 4px;
+    background: linear-gradient(180deg,
+      rgba(52, 211, 153, 0.7) 0%,
+      rgba(52, 211, 153, 0.2) 100%);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+  }
+  .jackpot-reward-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+  .jackpot-reward-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: rgba(52, 211, 153, 0.85);
+    text-transform: uppercase;
+    text-shadow: 0 0 6px rgba(52, 211, 153, 0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .jackpot-reward-unit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    padding: 0.12rem 0.4rem;
+    border-radius: 2px;
+    background: rgba(52, 211, 153, 0.18);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    color: #6EE7B7;
+  }
+  .jackpot-reward-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    margin: 0.4rem 0 0.5rem;
+  }
+  .jackpot-reward-num {
+    position: relative;
+  }
+  .jackpot-reward-num.has-prize {
+    color: #6EE7B7;
+    /* Base glow static; throb on the ::after overlay (opacity-only). */
+    text-shadow:
+      0 0 8px  #34D399,
+      0 0 18px rgba(52, 211, 153, 0.6),
+      0 0 32px rgba(16, 185, 129, 0.35);
+  }
+  .jackpot-reward-num.has-prize::after {
+    content: attr(data-glow);
+    position: absolute;
+    inset: 0;
+    color: #6EE7B7;
+    text-shadow:
+      0 0 12px #34D399,
+      0 0 26px rgba(52, 211, 153, 0.8),
+      0 0 48px rgba(16, 185, 129, 0.55);
+    opacity: 0;
+    animation: jackpot-glow-breathe 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .jackpot-reward-num.is-empty {
+    color: rgba(148, 163, 184, 0.45);
+    text-shadow: none;
+  }
+  .jackpot-reward-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.7rem;
+    line-height: 1;
+  }
+  .jackpot-reward-status.is-ready {
+    color: #6EE7B7;
+    text-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+  }
+
+  /* SPINNING STATE — when isSpinning, the panel overlay */
+  .jackpot-spinning {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+  .jackpot-spinning-orb {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background:
+      conic-gradient(from 0deg,
+        #FCD34D, #F59E0B, #FB923C, #F472B6, #C084FC, #67E8F9, #FCD34D);
+    /* Pulse halo instead of rotation — keeps orb anchored on scroll */
+    animation: jackpot-spinning-pulse 0.7s ease-in-out infinite;
+    box-shadow:
+      0 0 26px rgba(251, 191, 36, 0.7),
+      0 0 52px -4px rgba(251, 191, 36, 0.5);
+    position: relative;
+  }
+  .jackpot-spinning-orb::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: oklch(0.13 0.02 250);
+    display: flex;
+  }
+  @keyframes jackpot-spinning-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 26px rgba(251, 191, 36, 0.7),
+        0 0 52px -4px rgba(251, 191, 36, 0.5);
+    }
+    50% {
+      box-shadow:
+        0 0 42px rgba(251, 191, 36, 1),
+        0 0 84px -4px rgba(251, 191, 36, 0.75);
+    }
+  }
+  .jackpot-spinning-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    color: #FCD34D;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+    animation: jackpot-spinning-text 1s ease-in-out infinite;
+  }
+  @keyframes jackpot-spinning-text {
+    0%, 100% { opacity: 1;   letter-spacing: 0.28em; }
+    50%      { opacity: 0.6; letter-spacing: 0.36em; }
+  }
+
+  /* =========================================================================
+     QUEST STEPPER — Daily Jackpot "How to Qualify" objectives.
+     Vertical numbered nodes connected by a glowing line; game quest feel.
+     ========================================================================= */
+  .quest-section-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #FCD34D;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+  }
+  .quest-section-title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(251, 191, 36, 0.18);
+    border: 1px solid rgba(251, 191, 36, 0.45);
+    color: #FCD34D;
+    box-shadow: 0 0 10px -2px rgba(251, 191, 36, 0.5);
+  }
+
+  .quest-stepper {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .quest-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    column-gap: 0.85rem;
+    padding: 0.45rem 0 0.45rem 0;
+  }
+  /* Vertical connector between steps */
+  .quest-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 38px;
+    bottom: -2px;
+    width: 2px;
+    background: linear-gradient(180deg,
+      rgba(251, 191, 36, 0.55),
+      rgba(251, 191, 36, 0.15));
+    z-index: 0;
+  }
+  .quest-step-node {
+    position: relative;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%,
+        rgba(251, 191, 36, 0.3),
+        rgba(251, 191, 36, 0.08) 70%
+      ),
+      oklch(0.13 0.02 250);
+    border: 1.5px solid rgba(251, 191, 36, 0.55);
+    color: #FCD34D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    font-weight: 900;
+    box-shadow:
+      0 0 14px -3px rgba(251, 191, 36, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    text-shadow: 0 0 6px rgba(251, 191, 36, 0.7);
+  }
+  .quest-step-text {
+    align-self: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  /* =========================================================================
+     LOOT ROW — RPG-style rarity-colored reward rows for the prize table.
+     ========================================================================= */
+  .loot-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .loot-row {
+    --loot-c: #94A3B8;
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.65rem 0.85rem 0.65rem 1.05rem;
+    background:
+      linear-gradient(90deg,
+        color-mix(in oklab, var(--loot-c) 9%, transparent),
+        transparent 55%),
+      oklch(0.16 0.012 250 / 0.55);
+    border: 1px solid color-mix(in oklab, var(--loot-c) 28%, transparent);
+    border-radius: 0.55rem;
+    isolation: isolate;
+    overflow: hidden;
+    transition: background 220ms cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .loot-row::before {
+    content: '';
+    position: absolute;
+    top: 18%; bottom: 18%; left: 0;
+    width: 3px;
+    background: var(--loot-c);
+    box-shadow:
+      0 0 8px color-mix(in oklab, var(--loot-c) 80%, transparent),
+      0 0 16px color-mix(in oklab, var(--loot-c) 40%, transparent);
+    border-radius: 0 2px 2px 0;
+  }
+  .loot-row:hover {
+    border-color: color-mix(in oklab, var(--loot-c) 55%, transparent);
+    background:
+      linear-gradient(90deg,
+        color-mix(in oklab, var(--loot-c) 16%, transparent),
+        transparent 55%),
+      oklch(0.2 0.014 250 / 0.65);
+  }
+  .loot-pct {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    color: var(--loot-c);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--loot-c) 60%, transparent);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .loot-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+    min-width: 0;
+  }
+  .loot-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--loot-c) 92%, white);
+    text-shadow: 0 0 6px color-mix(in oklab, var(--loot-c) 40%, transparent);
+    line-height: 1;
+  }
+  .loot-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--loot-c);
+    box-shadow: 0 0 6px var(--loot-c);
+  }
+  .loot-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  /* Rarity glyph at the right */
+  .loot-glyph {
+    width: 20px;
+    height: 24px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: var(--loot-c);
+    box-shadow: 0 0 12px -2px var(--loot-c);
+    opacity: 0.85;
+  }
+  /* Tier color variants */
+  .loot-row--common    { --loot-c: #94A3B8; }
+  .loot-row--uncommon  { --loot-c: #22D3EE; }
+  .loot-row--rare      { --loot-c: #A78BFA; }
+  .loot-row--epic      { --loot-c: #34D399; }
+  .loot-row--legendary { --loot-c: #FB7185; }
+
+  /* =========================================================================
+     KPI CARD ENHANCEMENTS — fresh-design upgrades layered on top of
+     the existing .neon-tile shell. Activate by adding `.kpi-fresh`:
+       • Floating SVG illustration (gentle 5s drift + tilt)
+       • Diagonal traveling shimmer across the surface every 6s
+       • Bottom telemetry strip with pulsing LIVE LED
+       • Stronger hover lift (4px) + bigger halo intensification
+       • Optional `.kpi-fresh-metric` on the headline number → neon-sweep
+     ========================================================================= */
+  .kpi-fresh {
+    position: relative;
+    isolation: isolate;
+  }
+  /* Diagonal shimmer band — slow traveling highlight */
+  .kpi-fresh::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg,
+      transparent 0%,
+      transparent 38%,
+      color-mix(in oklab, var(--neon, white) 14%, transparent) 50%,
+      transparent 62%,
+      transparent 100%);
+    background-size: 220% 100%;
+    background-position: 220% 0;
+    background-repeat: no-repeat;
+    animation: kpi-shimmer 6s linear infinite;
+    mix-blend-mode: screen;
+    z-index: 0;
+    border-radius: inherit;
+  }
+  @keyframes kpi-shimmer {
+    0%   { background-position: 220% 0; }
+    100% { background-position: -100% 0; }
+  }
+  /* Float the headline SVG illustration */
+  .kpi-fresh img {
+    animation: kpi-float 5.4s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes kpi-float {
+    0%, 100% { transform: translateY(0)    rotate(0deg); }
+    33%      { transform: translateY(-3px) rotate(-1deg); }
+    66%      { transform: translateY(2px)  rotate(1deg); }
+  }
+  /* Stronger hover lift on fresh KPI cards */
+  @media (hover: hover) {
+    .neon-tile.kpi-fresh:hover {
+      transform: translateY(-4px) translateZ(0);
+      box-shadow:
+        inset 0 1px 0 color-mix(in oklab, var(--neon) 40%, transparent),
+        0 0 0 1px color-mix(in oklab, var(--neon) 50%, transparent),
+        0 0 48px -6px color-mix(in oklab, var(--neon) 85%, transparent),
+        0 16px 32px -12px rgba(0, 0, 0, 0.55);
+    }
+  }
+  /* Reduced motion — keep things still */
+  @media (prefers-reduced-motion: reduce) {
+    .kpi-fresh::after  { animation: none; opacity: 0.55; }
+    .kpi-fresh img     { animation: none; }
+  }
+
+  /* Telemetry strip footer */
+  .kpi-tel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed color-mix(in oklab, var(--neon, white) 22%, transparent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--neon, white) 70%, oklch(0.55 0.02 250));
+  }
+  .kpi-tel-led {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .kpi-tel-led::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--neon, white);
+    box-shadow: 0 0 6px var(--neon, white);
+    animation: kpi-led-blink 1.6s ease-in-out infinite;
+  }
+  @keyframes kpi-led-blink {
+    /* Opacity only (no transform scale) for scroll-anchor safety */
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 1;    }
+  }
+  /* Big metric figure with traveling neon-sweep — tinted to current neon */
+  .kpi-fresh-metric {
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--neon, white) 75%, white) 0%,
+      color-mix(in oklab, var(--neon, white) 75%, white) 30%,
+      color-mix(in oklab, var(--neon, white) 40%, white) 42%,
+      #FFFFFF 50%,
+      color-mix(in oklab, var(--neon, white) 40%, white) 58%,
+      color-mix(in oklab, var(--neon, white) 75%, white) 70%,
+      color-mix(in oklab, var(--neon, white) 75%, white) 100%
+    );
+    background-size: 220% 100%;
+    background-repeat: repeat;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    animation: kpi-metric-sweep 3.2s linear infinite;
+    will-change: background-position;
+  }
+  @keyframes kpi-metric-sweep {
+    0%   { background-position: 220% 0; }
+    100% { background-position: 0%   0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kpi-fresh-metric { animation-duration: 7s; }
+  }
+
+  /* =========================================================================
+     TX LEDGER BLOCK — tactical synthwave ledger entries.
+     Replaces the generic row pattern with a HUD-style block:
+       • Left accent rail (glow in wallet color)
+       • Tactical wallet chip (clip-path notched corners)
+       • Flow line connector — visualizes money moving toward the amount
+       • Orbitron amount readout with neon glow
+       • Hover: scanline overlay + corner brackets reveal
+     Uses --rail (wallet color) + --tx (transaction-type color) as bind points.
+     ========================================================================= */
+  .tx-block {
+    position: relative;
+    padding: 0.85rem 1rem 0.75rem 1.4rem;
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--rail, transparent) 6%, transparent),
+        transparent 55%),
+      oklch(0.18 0.014 250 / 0.55);
+    border-top: 1px solid oklch(0.32 0.04 250 / 0.18);
+    isolation: isolate;
+    overflow: hidden;
+    transition: background 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  /* Left accent rail — glows with wallet color */
+  .tx-block::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 16%; bottom: 16%;
+    width: 2.5px;
+    background: var(--rail, oklch(0.7 0.18 280));
+    box-shadow:
+      0 0 10px color-mix(in oklab, var(--rail, white) 80%, transparent),
+      0 0 18px color-mix(in oklab, var(--rail, white) 40%, transparent);
+    border-radius: 0 2px 2px 0;
+  }
+  /* Hover scanline + diagonal sheen */
+  .tx-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(105deg,
+        transparent 0,
+        color-mix(in oklab, var(--rail, white) 9%, transparent) 50%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 280ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .tx-block:hover {
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--rail, transparent) 10%, transparent),
+        transparent 55%),
+      oklch(0.22 0.016 250 / 0.7);
+  }
+  .tx-block:hover::after { opacity: 1; }
+
+  /* TOP STRIP: wallet chip + flow line + amount */
+  .tx-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Tactical wallet chip — notched clip-path corners (cyberpunk tag) */
+  .tx-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem 0.6rem 0.18rem 0.55rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    color: var(--rail);
+    background: color-mix(in oklab, var(--rail) 14%, transparent);
+    border: 1px solid color-mix(in oklab, var(--rail) 42%, transparent);
+    clip-path: polygon(12% 0, 100% 0, 100% 65%, 88% 100%, 0 100%, 0 35%);
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  /* Flow line — animated dotted line traveling toward the amount */
+  .tx-flow {
+    flex: 1;
+    height: 1px;
+    background-image: linear-gradient(90deg,
+      color-mix(in oklab, var(--rail) 55%, transparent) 0,
+      color-mix(in oklab, var(--rail) 25%, transparent) 70%,
+      transparent 100%);
+    background-size: 200% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    position: relative;
+  }
+  .tx-flow::before {
+    /* tiny pulsing dot at the trailing end */
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--rail);
+    transform: translate(-1px, -50%);
+    box-shadow: 0 0 6px var(--rail);
+    animation: tx-flow-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes tx-flow-pulse {
+    /* Opacity + box-shadow only (no transform scale) — keeps dot anchored
+       to its tx-block parent during scroll. */
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 4px var(--rail); }
+    50%      { opacity: 1;   box-shadow: 0 0 10px var(--rail); }
+  }
+
+  /* Amount readout — Orbitron with neon text-shadow */
+  .tx-readout {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .tx-readout--pos {
+    color: oklch(0.88 0.18 150);
+    text-shadow:
+      0 0 10px oklch(0.88 0.18 150 / 0.6),
+      0 0 22px oklch(0.78 0.22 150 / 0.35);
+  }
+  .tx-readout--neg {
+    color: oklch(0.82 0.16 25);
+    text-shadow:
+      0 0 10px oklch(0.82 0.16 25 / 0.55),
+      0 0 22px oklch(0.7 0.2 25 / 0.3);
+  }
+  .tx-unit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: oklch(0.55 0.02 250);
+    margin-left: 0.3rem;
+  }
+
+  /* MID STRIP: type pill + wallet name + description */
+  .tx-mid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.55rem;
+    font-size: 11.5px;
+    color: oklch(0.78 0.015 250);
+  }
+
+  .tx-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.18rem 0.5rem;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: color-mix(in oklab, var(--tx) 14%, transparent);
+    color: var(--tx);
+    border: 1px solid color-mix(in oklab, var(--tx) 30%, transparent);
+    border-radius: 3px;
+    line-height: 1;
+  }
+
+  .tx-wallet-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.16rem 0.5rem;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: color-mix(in oklab, var(--rail) 95%, white);
+    background: color-mix(in oklab, var(--rail) 8%, transparent);
+    border: 1px dashed color-mix(in oklab, var(--rail) 30%, transparent);
+    border-radius: 3px;
+    line-height: 1;
+  }
+  .tx-wallet-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--rail);
+    box-shadow: 0 0 5px var(--rail);
+  }
+
+  .tx-desc {
+    font-size: 11.5px;
+    color: oklch(0.8 0.012 250);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  /* BOT STRIP: reference + timestamp + balance tag */
+  .tx-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.45rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    color: oklch(0.52 0.015 250);
+    text-transform: uppercase;
+  }
+  .tx-foot-sep { color: oklch(0.35 0.01 250); }
+  .tx-foot-ref { color: oklch(0.66 0.02 250); }
+  .tx-foot-time { color: oklch(0.58 0.015 250); }
+
+  .tx-bal {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.18rem 0.5rem;
+    background: oklch(0.22 0.014 250 / 0.6);
+    border: 1px solid oklch(0.32 0.02 250 / 0.45);
+    border-radius: 3px;
+    color: oklch(0.7 0.015 250);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .tx-bal-label {
+    color: oklch(0.5 0.015 250);
+  }
+  .tx-bal-value {
+    color: oklch(0.92 0.008 82);
+    font-weight: 700;
+  }
+
+  /* Status badge (withdrawal) — tactical chip variant */
+  .tx-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.16rem 0.5rem;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    line-height: 1;
+  }
+
+  /* External link icon affordance */
+  .tx-foot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: oklch(0.85 0.15 200);
+    transition: color 160ms ease;
+  }
+  .tx-foot-link:hover { color: oklch(0.92 0.18 200); }
+
+  /* =========================================================================
+     TX CMDBAR — tactical command-bar header for the ledger.
+     Replaces the plain "TRANSACTION HISTORY" strip with a HUD frame:
+       • Orbitron title with cyan glow
+       • Pulsing LIVE dot
+       • Tactical corner brackets (TL + BR)
+       • Diagonal sheen across the title gradient
+     ========================================================================= */
+  .tx-cmdbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    background:
+      linear-gradient(90deg,
+        oklch(0.85 0.18 200 / 0.16) 0%,
+        oklch(0.85 0.18 200 / 0.05) 30%,
+        transparent 70%),
+      oklch(0.16 0.012 250 / 0.55);
+    border-bottom: 1px solid oklch(0.85 0.18 200 / 0.22);
+    isolation: isolate;
+  }
+  /* TL corner bracket */
+  .tx-cmdbar::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px;
+    width: 14px; height: 14px;
+    border-top: 1.5px solid oklch(0.85 0.18 200 / 0.7);
+    border-left: 1.5px solid oklch(0.85 0.18 200 / 0.7);
+    pointer-events: none;
+  }
+  /* BR corner bracket */
+  .tx-cmdbar::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; right: 4px;
+    width: 14px; height: 14px;
+    border-bottom: 1.5px solid oklch(0.85 0.18 200 / 0.7);
+    border-right: 1.5px solid oklch(0.85 0.18 200 / 0.7);
+    pointer-events: none;
+  }
+  .tx-cmdbar-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: oklch(0.93 0.14 200);
+    text-shadow: 0 0 10px oklch(0.85 0.18 200 / 0.5);
+  }
+  .tx-cmdbar-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: oklch(0.88 0.2 150);
+    padding: 0.15rem 0.45rem;
+    border: 1px solid oklch(0.78 0.18 150 / 0.4);
+    background: oklch(0.78 0.18 150 / 0.1);
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .tx-cmdbar-live::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: oklch(0.82 0.22 150);
+    box-shadow:
+      0 0 6px oklch(0.82 0.22 150),
+      0 0 12px oklch(0.82 0.22 150 / 0.5);
+    animation: tx-live-blink 1.6s ease-in-out infinite;
+  }
+  @keyframes tx-live-blink {
+    /* Opacity + box-shadow only (no transform scale) — LIVE LED stays
+       anchored to its tx-cmdbar parent during scroll. */
+    0%, 100% {
+      opacity: 0.4;
+      box-shadow:
+        0 0 4px  oklch(0.82 0.22 150),
+        0 0 8px  oklch(0.82 0.22 150 / 0.4);
+    }
+    50% {
+      opacity: 1;
+      box-shadow:
+        0 0 10px oklch(0.82 0.22 150),
+        0 0 18px oklch(0.82 0.22 150 / 0.6);
+    }
+  }
+
+  /* =========================================================================
+     NEON TAB — tactical filter chip variant of neon-btn.
+     Used for the wallet-filter row in the transaction history.
+       • Clip-path angled corners (TL + BR)
+       • Per-wallet neon color (--tab-c)
+       • Active = brighter fill + outer glow + inset shimmer
+       • Inactive = ghost outline with hover lift
+     ========================================================================= */
+  .neon-tab {
+    --tab-c: #94a3b8;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.32rem 0.85rem 0.32rem 0.6rem;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: color-mix(in oklab, var(--tab-c) 70%, white);
+    background: color-mix(in oklab, var(--tab-c) 5%, transparent);
+    border: 1px solid color-mix(in oklab, var(--tab-c) 22%, transparent);
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .neon-tab:hover {
+    color: color-mix(in oklab, var(--tab-c) 90%, white);
+    background: color-mix(in oklab, var(--tab-c) 12%, transparent);
+    border-color: color-mix(in oklab, var(--tab-c) 45%, transparent);
+  }
+  .neon-tab.is-active {
+    color: color-mix(in oklab, var(--tab-c) 95%, white);
+    background: color-mix(in oklab, var(--tab-c) 22%, transparent);
+    border-color: var(--tab-c);
+    box-shadow:
+      0 0 12px color-mix(in oklab, var(--tab-c) 35%, transparent),
+      inset 0 0 14px color-mix(in oklab, var(--tab-c) 16%, transparent);
+    text-shadow: 0 0 8px color-mix(in oklab, var(--tab-c) 60%, transparent);
+  }
+  .neon-tab-abbr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    padding: 0.12rem 0.32rem;
+    background: color-mix(in oklab, var(--tab-c) 22%, transparent);
+    border-radius: 2px;
+    color: var(--tab-c);
+    line-height: 1;
+  }
+  .neon-tab-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 0.1rem 0.36rem;
+    background: color-mix(in oklab, var(--tab-c) 38%, transparent);
+    color: oklch(0.97 0.008 82);
+    border-radius: 2px;
+    line-height: 1;
+  }
+  /* Per-wallet color variants — match WALLET_META rails */
+  .neon-tab--all    { --tab-c: oklch(0.85 0.18 200); }
+  .neon-tab--mint   { --tab-c: oklch(0.82 0.18 150); }
+  .neon-tab--violet { --tab-c: oklch(0.78 0.18 305); }
+  .neon-tab--cyan   { --tab-c: oklch(0.85 0.16 215); }
+  .neon-tab--gold   { --tab-c: oklch(0.82 0.18 65);  }
+
+  /* =========================================================================
+     OPERATOR ID DOSSIER — Profile page identity card.
+     A classified-style operator badge:
+       • Hexagonal avatar frame with neon gradient border
+       • Top classification strip with clearance chip
+       • Telemetry readouts (mono labels, Orbitron values)
+       • Barcode strip decoration
+     ========================================================================= */
+
+  /* Hexagonal avatar frame */
+  .hex-avatar {
+    position: relative;
+    width: 110px;
+    height: 122px;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 14px oklch(0.85 0.18 200 / 0.35));
+  }
+  .hex-avatar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: linear-gradient(135deg,
+      oklch(0.85 0.18 200),
+      oklch(0.78 0.18 305) 60%,
+      oklch(0.85 0.18 200));
+  }
+  .hex-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background:
+      radial-gradient(ellipse at 50% 30%, oklch(0.28 0.04 250) 0, oklch(0.16 0.012 250) 70%);
+  }
+  .hex-avatar-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    color: oklch(0.95 0.14 200);
+    text-shadow: 0 0 14px oklch(0.85 0.18 200 / 0.7);
+    z-index: 2;
+    letter-spacing: -0.02em;
+  }
+  /* Tiny corner ticks around the hex */
+  .hex-avatar-ticks {
+    position: absolute;
+    inset: -6px;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .hex-avatar-ticks::before,
+  .hex-avatar-ticks::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: oklch(0.85 0.18 200);
+    border-radius: 50%;
+    box-shadow: 0 0 6px oklch(0.85 0.18 200);
+  }
+  .hex-avatar-ticks::before { top: 12px; left: -2px; }
+  .hex-avatar-ticks::after  { bottom: 12px; right: -2px; }
+
+  /* Operator ID card shell */
+  .op-id-card {
+    position: relative;
+    background:
+      linear-gradient(180deg,
+        oklch(0.85 0.18 200 / 0.06),
+        transparent 30%),
+      oklch(0.18 0.012 250 / 0.6);
+    border: 1px solid oklch(0.85 0.18 200 / 0.18);
+    border-radius: 0.85rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .op-id-card::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px;
+    width: 14px; height: 14px;
+    border-top: 1.5px solid oklch(0.85 0.18 200 / 0.55);
+    border-left: 1.5px solid oklch(0.85 0.18 200 / 0.55);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .op-id-card::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; right: 6px;
+    width: 14px; height: 14px;
+    border-bottom: 1.5px solid oklch(0.85 0.18 200 / 0.55);
+    border-right: 1.5px solid oklch(0.85 0.18 200 / 0.55);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Top classification strip */
+  .op-id-bar {
+    padding: 0.5rem 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: oklch(0.92 0.14 200);
+    background: linear-gradient(90deg,
+      oklch(0.85 0.18 200 / 0.18),
+      oklch(0.85 0.18 200 / 0.04));
+    border-bottom: 1px solid oklch(0.85 0.18 200 / 0.2);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+  }
+  .op-id-clearance {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.12rem 0.45rem;
+    background: oklch(0.85 0.18 200 / 0.18);
+    border: 1px solid oklch(0.85 0.18 200 / 0.4);
+    border-radius: 2px;
+    color: oklch(0.97 0.14 200);
+  }
+
+  /* UID stamp */
+  .op-id-uid {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: oklch(0.7 0.015 250);
+    background: oklch(0.22 0.012 250 / 0.6);
+    border: 1px dashed oklch(0.4 0.02 250 / 0.5);
+    border-radius: 3px;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Telemetry rows */
+  .op-tel {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.85rem;
+  }
+  .op-tel-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed oklch(0.32 0.02 250 / 0.35);
+  }
+  .op-tel-row:last-child { border-bottom: 0; }
+  .op-tel-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: oklch(0.55 0.015 250);
+    text-transform: uppercase;
+  }
+  .op-tel-value {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: oklch(0.95 0.008 82);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+  }
+
+  /* Decorative barcode */
+  .op-barcode {
+    height: 26px;
+    margin: 0.5rem 0 0.4rem;
+    background-image: repeating-linear-gradient(90deg,
+      oklch(0.95 0.008 82) 0 1px,
+      transparent 1px 3px,
+      oklch(0.95 0.008 82) 3px 5px,
+      transparent 5px 7px,
+      oklch(0.95 0.008 82) 7px 9px,
+      transparent 9px 13px,
+      oklch(0.95 0.008 82) 13px 16px,
+      transparent 16px 18px,
+      oklch(0.95 0.008 82) 18px 19px,
+      transparent 19px 23px,
+      oklch(0.95 0.008 82) 23px 25px,
+      transparent 25px 28px);
+    opacity: 0.4;
+    border-radius: 2px;
+  }
+
+  /* Tactical form input wrapper */
+  .tac-field { display: flex; flex-direction: column; }
+  .tac-field-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: oklch(0.62 0.02 250);
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+  }
+  .tac-field-label::before {
+    content: '›';
+    color: oklch(0.85 0.18 200);
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .tac-field-input {
+    width: 100%;
+    background: oklch(0.16 0.012 250 / 0.55);
+    border: 1px solid oklch(0.32 0.02 250 / 0.55);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: oklch(0.94 0.008 82);
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    line-height: 1.2;
+    outline: none;
+  }
+  .tac-field-input::placeholder { color: oklch(0.5 0.015 250); }
+  .tac-field-input:focus-visible {
+    border-color: oklch(0.85 0.18 200 / 0.7);
+    box-shadow:
+      0 0 0 1px oklch(0.85 0.18 200 / 0.3),
+      0 0 14px oklch(0.85 0.18 200 / 0.2);
+  }
+  .tac-field-shell {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .tac-field-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: oklch(0.6 0.04 200);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Language chip — clip-path tile */
+  .lang-chip {
+    --lc: oklch(0.85 0.18 200);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.75rem 0.9rem;
+    background: oklch(0.18 0.012 250 / 0.5);
+    border: 1px solid oklch(0.32 0.02 250 / 0.5);
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    cursor: pointer;
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: left;
+    width: 100%;
+  }
+  .lang-chip:hover {
+    border-color: color-mix(in oklab, var(--lc) 45%, transparent);
+    background: oklch(0.22 0.014 250 / 0.65);
+  }
+  .lang-chip.is-active {
+    border-color: var(--lc);
+    background: color-mix(in oklab, var(--lc) 16%, transparent);
+    box-shadow:
+      0 0 14px color-mix(in oklab, var(--lc) 30%, transparent),
+      inset 0 0 14px color-mix(in oklab, var(--lc) 12%, transparent);
+  }
+  .lang-chip-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    padding: 0.18rem 0.42rem;
+    background: oklch(0.22 0.014 250 / 0.7);
+    border: 1px solid oklch(0.4 0.02 250 / 0.45);
+    border-radius: 2px;
+    color: oklch(0.85 0.14 200);
+    line-height: 1;
+  }
+  .lang-chip.is-active .lang-chip-code {
+    background: color-mix(in oklab, var(--lc) 22%, transparent);
+    border-color: var(--lc);
+    color: color-mix(in oklab, var(--lc) 95%, white);
+  }
+  .lang-chip-flag {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .lang-chip-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: oklch(0.85 0.012 250);
+    flex: 1;
+  }
+  .lang-chip.is-active .lang-chip-label {
+    color: oklch(0.97 0.008 82);
+  }
+  .lang-chip-check {
+    margin-left: auto;
+    color: var(--lc);
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--lc) 70%, transparent));
+  }
+
+  /* =========================================================================
+     CRED SLOT — Tactical credential row (Account · Credentials module).
+     Each slot has:
+       • Left accent rail (color-coded by credential type)
+       • Hexagonal badge with icon
+       • Mono label + Orbitron value + optional sub-line
+       • Right-side status chip or chevron
+       • Subtle scanline texture in the accent color
+     Bind: --cred-c controls the per-slot neon hue.
+     ========================================================================= */
+  .cred-slot {
+    --cred-c: oklch(0.85 0.18 200);
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 0.7rem 0.9rem 0.7rem 1.05rem;
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--cred-c) 6%, transparent),
+        transparent 60%),
+      oklch(0.18 0.012 250 / 0.6);
+    border: 1px solid color-mix(in oklab, var(--cred-c) 22%, oklch(0.32 0.02 250));
+    border-radius: 0.6rem;
+    isolation: isolate;
+    overflow: hidden;
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: left;
+    width: 100%;
+  }
+  .cred-slot::before {
+    content: '';
+    position: absolute;
+    top: 14%; bottom: 14%; left: 0;
+    width: 2.5px;
+    background: var(--cred-c);
+    box-shadow:
+      0 0 8px color-mix(in oklab, var(--cred-c) 80%, transparent),
+      0 0 16px color-mix(in oklab, var(--cred-c) 40%, transparent);
+    border-radius: 0 2px 2px 0;
+  }
+  .cred-slot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg,
+      transparent 0 2px,
+      color-mix(in oklab, var(--cred-c) 5%, transparent) 2px 3px);
+    opacity: 0.5;
+    mix-blend-mode: screen;
+  }
+  button.cred-slot { cursor: pointer; }
+  button.cred-slot:hover,
+  .cred-slot:hover {
+    border-color: color-mix(in oklab, var(--cred-c) 45%, transparent);
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--cred-c) 9%, transparent),
+        transparent 60%),
+      oklch(0.2 0.014 250 / 0.7);
+  }
+
+  /* Hexagonal icon badge */
+  .cred-badge {
+    position: relative;
+    width: 40px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color-mix(in oklab, var(--cred-c) 95%, white);
+    z-index: 1;
+    filter: drop-shadow(0 0 6px color-mix(in oklab, var(--cred-c) 50%, transparent));
+  }
+  .cred-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: linear-gradient(135deg,
+      color-mix(in oklab, var(--cred-c) 60%, transparent),
+      color-mix(in oklab, var(--cred-c) 22%, transparent));
+    z-index: -2;
+  }
+  .cred-badge::after {
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: oklch(0.16 0.012 250);
+    z-index: -1;
+  }
+
+  .cred-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .cred-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: color-mix(in oklab, var(--cred-c) 70%, oklch(0.6 0.02 250));
+    text-transform: uppercase;
+  }
+  .cred-value {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: oklch(0.95 0.008 82);
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cred-value--masked {
+    letter-spacing: 0.45em;
+    color: color-mix(in oklab, var(--cred-c) 75%, white);
+    font-size: 13px;
+  }
+  .cred-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    color: oklch(0.55 0.02 250);
+    text-transform: uppercase;
+  }
+
+  /* Right-side status chip */
+  .cred-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.22rem 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    clip-path: polygon(10% 0, 100% 0, 100% 60%, 90% 100%, 0 100%, 0 40%);
+    color: color-mix(in oklab, var(--cred-c) 95%, white);
+    background: color-mix(in oklab, var(--cred-c) 18%, transparent);
+    border: 1px solid color-mix(in oklab, var(--cred-c) 50%, transparent);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .cred-status::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cred-c);
+    box-shadow: 0 0 6px var(--cred-c);
+  }
+
+  .cred-chevron {
+    color: color-mix(in oklab, var(--cred-c) 60%, oklch(0.55 0.02 250));
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 1;
+  }
+  button.cred-slot:hover .cred-chevron {
+    transform: translateX(3px);
+    color: color-mix(in oklab, var(--cred-c) 95%, white);
+  }
+
+  /* Per-credential color variants */
+  .cred-slot--cyan   { --cred-c: oklch(0.85 0.18 200); }
+  .cred-slot--mint   { --cred-c: oklch(0.82 0.18 150); }
+  .cred-slot--violet { --cred-c: oklch(0.78 0.18 305); }
+  .cred-slot--rose   { --cred-c: oklch(0.78 0.18 25);  }
+  .cred-slot--gold   { --cred-c: oklch(0.82 0.18 65);  }
+
+  /* =========================================================================
+     WALLET HUD TILE — Portfolio "Available Balance" hero cards.
+     Vertical layout with:
+       • Top accent rail (centered, glowing)
+       • Hex badge + mono label header row
+       • Big Orbitron amount with neon text-shadow
+       • Mono sub-line
+       • Top-right radial halo bg
+     ========================================================================= */
+  .wallet-tile {
+    --wt-c: oklch(0.85 0.18 200);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 1rem 1rem 0.9rem;
+    background:
+      linear-gradient(160deg,
+        color-mix(in oklab, var(--wt-c) 8%, transparent),
+        transparent 55%),
+      oklch(0.18 0.012 250 / 0.6);
+    border: 1px solid color-mix(in oklab, var(--wt-c) 22%, oklch(0.32 0.02 250));
+    border-radius: 0.7rem;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100%;
+    /* Hover micro-interaction — one-shot transition (not an infinite
+       animation), so it stays scroll-safe. */
+    transition:
+      transform 260ms var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1)),
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
+  @media (hover: hover) {
+    .wallet-tile:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in oklab, var(--wt-c) 48%, oklch(0.32 0.02 250));
+      box-shadow: 0 14px 36px -14px color-mix(in oklab, var(--wt-c) 45%, transparent);
+    }
+  }
+  .wallet-tile::before {
+    /* Top centered accent rail */
+    content: '';
+    position: absolute;
+    left: 16%; right: 16%;
+    top: 0;
+    height: 2.5px;
+    background: var(--wt-c);
+    box-shadow:
+      0 0 10px color-mix(in oklab, var(--wt-c) 80%, transparent),
+      0 0 22px color-mix(in oklab, var(--wt-c) 35%, transparent);
+    border-radius: 0 0 2px 2px;
+  }
+  .wallet-tile::after {
+    /* Halo from top-right corner */
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -25%;
+    width: 90%;
+    height: 100%;
+    background: radial-gradient(circle,
+      color-mix(in oklab, var(--wt-c) 22%, transparent) 0,
+      transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .wallet-tile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .wallet-tile-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: color-mix(in oklab, var(--wt-c) 80%, white);
+    text-transform: uppercase;
+  }
+  .wallet-tile-badge {
+    position: relative;
+    width: 26px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color-mix(in oklab, var(--wt-c) 95%, white);
+    filter: drop-shadow(0 0 5px color-mix(in oklab, var(--wt-c) 50%, transparent));
+  }
+  .wallet-tile-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: linear-gradient(135deg,
+      color-mix(in oklab, var(--wt-c) 60%, transparent),
+      color-mix(in oklab, var(--wt-c) 22%, transparent));
+    z-index: -2;
+  }
+  .wallet-tile-badge::after {
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: oklch(0.16 0.012 250);
+    z-index: -1;
+  }
+  .wallet-tile-amount {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    /* Bumped up — bigger Orbitron amounts for better readability */
+    font-size: clamp(22px, 5cqi, 32px);
+    font-weight: 800;
+    letter-spacing: 0;
+    color: color-mix(in oklab, var(--wt-c) 95%, white);
+    text-shadow:
+      0 0 14px color-mix(in oklab, var(--wt-c) 50%, transparent),
+      0 0 26px color-mix(in oklab, var(--wt-c) 25%, transparent);
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    /* Allow the number to use the full tile width without breaking layout */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  /* Enable container-relative sizing on each tile so cqi works */
+  .wallet-tile {
+    container-type: inline-size;
+  }
+  .wallet-tile-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: oklch(0.62 0.02 250);
+    text-transform: uppercase;
+  }
+
+  /* Per-wallet color variants */
+  .wallet-tile--mint   { --wt-c: oklch(0.82 0.18 150); }
+  .wallet-tile--gold   { --wt-c: oklch(0.82 0.18 65);  }
+  .wallet-tile--cyan   { --wt-c: oklch(0.85 0.16 215); }
+  .wallet-tile--violet { --wt-c: oklch(0.78 0.18 305); }
+
+  /* Inline mini-balance pill — used inside the Profit Wallets tile to list
+     INVESTMENT / NETWORK children inline */
+  .wallet-mini {
+    --wm-c: oklch(0.85 0.16 215);
+    display: flex;
+    /* Wrap on narrow tiles — the amount drops below the label instead of
+       spilling past the tile edge and getting clipped by the card. */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 0.4rem;
+    padding: 0.45rem 0.6rem;
+    background: color-mix(in oklab, var(--wm-c) 8%, transparent);
+    border: 1px solid color-mix(in oklab, var(--wm-c) 26%, transparent);
+    border-radius: 0.45rem;
+  }
+  .wallet-mini-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: color-mix(in oklab, var(--wm-c) 80%, white);
+    text-transform: uppercase;
+  }
+  .wallet-mini-amount {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: color-mix(in oklab, var(--wm-c) 95%, white);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--wm-c) 40%, transparent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .wallet-mini-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: oklch(0.6 0.02 250);
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+  .wallet-mini--cyan   { --wm-c: oklch(0.85 0.16 215); }
+  .wallet-mini--violet { --wm-c: oklch(0.78 0.18 305); }
+
+  /* =========================================================================
+     WALLET IMG FRAME — Shared illustration container used wherever a wallet
+     icon needs to render the per-wallet SVG (wallet-deposit/trading/
+     investment/network.svg). Same halo + border treatment as the My Wallet
+     page so icons read identically across Portfolio + Wallet.
+
+     Bind: --wif-c is the wallet's accent color.
+     ========================================================================= */
+  .wallet-img-frame {
+    --wif-c: oklch(0.85 0.18 200);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--wif-c) 45%, var(--border));
+    background:
+      radial-gradient(circle at 30% 30%,
+        color-mix(in oklab, var(--wif-c) 22%, transparent),
+        transparent 70%),
+      color-mix(in oklab, var(--wif-c) 6%, var(--card));
+    box-shadow:
+      0 0 18px -6px color-mix(in oklab, var(--wif-c) 55%, transparent),
+      inset 0 1px 0 color-mix(in oklab, var(--wif-c) 22%, transparent);
+    flex-shrink: 0;
+  }
+  .wallet-img-frame > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.28rem;
+    user-select: none;
+    pointer-events: none;
+  }
+  .wallet-img-frame--sm { width: 40px; height: 40px; border-radius: 0.65rem; }
+  .wallet-img-frame--md { width: 48px; height: 48px; border-radius: 0.8rem; }
+  .wallet-img-frame--lg { width: 56px; height: 56px; border-radius: 0.95rem; }
+
+  /* =========================================================================
+     CONSTELLATION POD — radar-sensor style stat tile.
+     Each pod is a circular orb with:
+       • Tier-colored neon ring + outer halo + inner radial fill
+       • Big Orbitron readout in the middle
+       • LED dot orbiting the ring perimeter (CSS animation)
+       • Mini "scan sweep" radial line for liveliness
+     Surrounded by a soft card with label + sub below the orb.
+     Bind: --cp-c controls the tier color.
+     ========================================================================= */
+  .const-pod {
+    --cp-c: oklch(0.85 0.18 200);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.95rem 0.75rem 0.85rem;
+    background:
+      radial-gradient(circle at 50% 25%,
+        color-mix(in oklab, var(--cp-c) 9%, transparent),
+        transparent 65%),
+      oklch(0.18 0.012 250 / 0.5);
+    border: 1px solid color-mix(in oklab, var(--cp-c) 22%, oklch(0.3 0.02 250));
+    border-radius: 0.85rem;
+    isolation: isolate;
+    overflow: hidden;
+    transition: all 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .const-pod:hover {
+    border-color: color-mix(in oklab, var(--cp-c) 45%, transparent);
+    background:
+      radial-gradient(circle at 50% 25%,
+        color-mix(in oklab, var(--cp-c) 14%, transparent),
+        transparent 65%),
+      oklch(0.2 0.014 250 / 0.7);
+  }
+
+  /* Circular orb — the sensor disc */
+  .const-orb {
+    position: relative;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 30% 30%,
+        color-mix(in oklab, var(--cp-c) 30%, transparent) 0,
+        transparent 60%),
+      oklch(0.16 0.012 250);
+    border: 1.5px solid color-mix(in oklab, var(--cp-c) 55%, transparent);
+    box-shadow:
+      0 0 18px -4px color-mix(in oklab, var(--cp-c) 55%, transparent),
+      0 0 32px -6px color-mix(in oklab, var(--cp-c) 30%, transparent),
+      inset 0 0 14px -2px color-mix(in oklab, var(--cp-c) 25%, transparent);
+    flex-shrink: 0;
+  }
+
+  /* Static LED dot at the top of the orb — pulsing opacity instead of
+     orbiting (orbit rotation was creating a compositor layer that
+     desynced from parent during scroll). */
+  .const-orb::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    margin-left: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: var(--cp-c);
+    box-shadow:
+      0 0 6px  var(--cp-c),
+      0 0 12px color-mix(in oklab, var(--cp-c) 60%, transparent);
+    animation: const-orb-blink 1.8s ease-in-out infinite;
+  }
+  @keyframes const-orb-blink {
+    0%, 100% {
+      opacity: 0.55;
+      box-shadow:
+        0 0 4px  var(--cp-c),
+        0 0 8px  color-mix(in oklab, var(--cp-c) 40%, transparent);
+    }
+    50% {
+      opacity: 1;
+      box-shadow:
+        0 0 10px var(--cp-c),
+        0 0 20px color-mix(in oklab, var(--cp-c) 70%, transparent);
+    }
+  }
+  /* Radar sweep removed — used to rotate via transform which desynced
+     on scroll. Static radial highlight instead via the orb's existing
+     radial-gradient background (top-left 30/30%). */
+
+  /* Number rendered on top of the orb */
+  .const-orb-value {
+    position: relative;
+    z-index: 2;
+    font-family: 'Orbitron', monospace;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: color-mix(in oklab, var(--cp-c) 95%, white);
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--cp-c) 60%, transparent),
+      0 0 20px color-mix(in oklab, var(--cp-c) 30%, transparent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  /* Label + sub */
+  .const-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: oklch(0.88 0.012 250);
+    text-align: center;
+    line-height: 1.1;
+  }
+  .const-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: oklch(0.55 0.02 250);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  /* Tier color variants */
+  .const-pod--cyan    { --cp-c: oklch(0.85 0.18 200); }
+  .const-pod--gold    { --cp-c: oklch(0.82 0.18 65);  }
+  .const-pod--bronze  { --cp-c: oklch(0.74 0.14 50);  }
+  .const-pod--silver  { --cp-c: oklch(0.88 0.02 250); }
+  .const-pod--violet  { --cp-c: oklch(0.78 0.18 305); }
+  .const-pod--diamond { --cp-c: oklch(0.85 0.16 215); }
+  .const-pod--mint    { --cp-c: oklch(0.82 0.18 150); }
+
+  /* Reduced motion — keep the orb static but visible */
+  @media (prefers-reduced-motion: reduce) {
+    .const-orb::before,
+    .const-orb::after {
+      animation: none;
+    }
+    .const-orb::before { opacity: 0.7; }
+  }
+
+  /* =========================================================================
+     COUNT ORB — Compact circular badge used inside cred-slot for stat cards
+     (Attempts & Bots etc.). Same DNA as .const-orb but smaller + no
+     animation, so it slots cleanly into rows without distracting.
+     Bind: --co-c.
+     ========================================================================= */
+  .count-orb {
+    --co-c: oklch(0.85 0.18 200);
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 30% 30%,
+        color-mix(in oklab, var(--co-c) 32%, transparent) 0,
+        transparent 65%),
+      oklch(0.16 0.012 250);
+    border: 1.5px solid color-mix(in oklab, var(--co-c) 55%, transparent);
+    box-shadow:
+      0 0 12px -3px color-mix(in oklab, var(--co-c) 55%, transparent),
+      inset 0 0 10px -2px color-mix(in oklab, var(--co-c) 25%, transparent);
+    flex-shrink: 0;
+  }
+  .count-orb-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: color-mix(in oklab, var(--co-c) 95%, white);
+    text-shadow: 0 0 8px color-mix(in oklab, var(--co-c) 55%, transparent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .count-orb--dim {
+    opacity: 0.55;
+    filter: saturate(0.5);
+  }
+
+  /* =========================================================================
+     TREE NODE — Tactical hierarchical roster card for Network Tree.
+       • Per-rank --rail color (bronze / silver / gold / diamond)
+       • Left accent rail glow
+       • Subtle scanline texture
+       • Hover-lift
+     ========================================================================= */
+  .tree-node {
+    --rail: oklch(0.85 0.18 200);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.55rem 0.8rem 0.55rem 1rem;
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--rail) 5%, transparent),
+        transparent 55%),
+      oklch(0.18 0.012 250 / 0.6);
+    border: 1px solid color-mix(in oklab, var(--rail) 18%, oklch(0.3 0.02 250));
+    border-radius: 0.55rem;
+    isolation: isolate;
+    overflow: hidden;
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .tree-node::before {
+    content: '';
+    position: absolute;
+    top: 18%; bottom: 18%;
+    left: 0;
+    width: 2.5px;
+    background: var(--rail);
+    box-shadow:
+      0 0 8px color-mix(in oklab, var(--rail) 80%, transparent),
+      0 0 16px color-mix(in oklab, var(--rail) 35%, transparent);
+    border-radius: 0 2px 2px 0;
+  }
+  .tree-node:hover {
+    border-color: color-mix(in oklab, var(--rail) 40%, transparent);
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--rail) 8%, transparent),
+        transparent 55%),
+      oklch(0.2 0.014 250 / 0.7);
+  }
+  /* Root-level node — extra highlight */
+  .tree-node--root {
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--rail) 10%, transparent),
+        transparent 55%),
+      oklch(0.2 0.014 250 / 0.7);
+    border-color: color-mix(in oklab, var(--rail) 32%, transparent);
+  }
+
+  .tree-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    background: oklch(0.22 0.014 250 / 0.55);
+    border: 1px solid color-mix(in oklab, var(--rail) 30%, oklch(0.32 0.02 250));
+    color: color-mix(in oklab, var(--rail) 85%, white);
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+  }
+  .tree-toggle:hover:not(:disabled) {
+    background: color-mix(in oklab, var(--rail) 14%, transparent);
+    border-color: var(--rail);
+  }
+  .tree-toggle:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .tree-toggle-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--rail) 60%, oklch(0.55 0.02 250));
+  }
+
+  .tree-rank-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.12rem 0.45rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--rail) 95%, white);
+    background: color-mix(in oklab, var(--rail) 16%, transparent);
+    border: 1px solid color-mix(in oklab, var(--rail) 40%, transparent);
+    border-radius: 3px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .tree-info-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.12rem 0.42rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: oklch(0.7 0.015 250);
+    background: oklch(0.22 0.014 250 / 0.55);
+    border: 1px solid oklch(0.32 0.02 250 / 0.5);
+    border-radius: 3px;
+    line-height: 1;
+  }
+  .tree-investment {
+    font-family: 'Orbitron', 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: oklch(0.88 0.18 150);
+    text-shadow: 0 0 8px oklch(0.82 0.18 150 / 0.4);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Child container — vertical tactical rail with subtle dots */
+  .tree-children {
+    position: relative;
+    margin-left: 1.05rem;
+    padding-left: 1rem;
+  }
+  .tree-children::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 12px;
+    left: 0;
+    width: 1px;
+    background:
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--rail-parent, oklch(0.85 0.18 200)) 35%, transparent) 0%,
+        color-mix(in oklab, var(--rail-parent, oklch(0.85 0.18 200)) 10%, transparent) 100%);
+  }
+
+  /* RAIDER badge — tactical amber chip */
+  .tree-raider {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.1rem 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: oklch(0.88 0.2 75);
+    background: oklch(0.82 0.18 75 / 0.18);
+    border: 1px solid oklch(0.82 0.18 75 / 0.5);
+    border-radius: 3px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 0 6px oklch(0.82 0.18 75 / 0.6);
+  }
+}
