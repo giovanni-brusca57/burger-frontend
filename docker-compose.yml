@@ -2,5 +2,15 @@ services:
   app:
     image: ${IMAGE}
     restart: unless-stopped
+    # Frontend nginx = entrypoint publik: serve SPA + SSL (certs) + proxy /api ke backend:3000
     ports:
-      - '8080:80'
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - burger-network
+
+networks:
+  burger-network:
+    external: true
